@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="825.0" prefWidth="1450.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeFormController">
+   <children>
+      <Line endX="1347.878662109375" endY="1.52587890625E-5" layoutX="181.0" layoutY="93.0" startX="-100.0" stroke="#bdbdbd" strokeWidth="3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <ImageView layoutX="66.0" layoutY="15.0">
+         <image>
+            <Image url="@assets/icons/home%20-%20Colored.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="176.0" layoutY="23.0" text="Home" textFill="#757575">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="208.0" layoutY="135.0" opacity="0.7" prefHeight="180.0" prefWidth="240.0" style="-fx-background-color: #000000;">
+         <children>
+            <Line endX="139.0" layoutX="101.0" layoutY="61.0" startX="-100.0" stroke="WHITE" />
+            <Label layoutX="39.0" layoutY="25.0" text="New Registrations" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="44.0" fitWidth="43.0" layoutX="65.0" layoutY="90.0">
+               <image>
+                  <Image url="@assets/icons/students.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="121.0" layoutY="94.0" text="10" textFill="WHITE">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="606.0" layoutY="135.0" opacity="0.7" prefHeight="180.0" prefWidth="240.0" style="-fx-background-color: #000000;">
+         <children>
+            <Line endX="139.0" layoutX="101.0" layoutY="61.0" startX="-100.0" stroke="WHITE" />
+            <Label layoutX="39.0" layoutY="25.0" text="No of Payments" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="44.0" fitWidth="43.0" layoutX="65.0" layoutY="90.0">
+               <image>
+                  <Image url="@assets/icons/students.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="121.0" layoutY="94.0" text="10" textFill="WHITE">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="1018.0" layoutY="135.0" opacity="0.7" prefHeight="180.0" prefWidth="240.0" style="-fx-background-color: #000000;">
+         <children>
+            <Line endX="139.0" layoutX="101.0" layoutY="61.0" startX="-100.0" stroke="WHITE" />
+            <Label layoutX="39.0" layoutY="25.0" text="Total Income" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="121.0" layoutY="94.0" text="10" textFill="WHITE">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="67.0" layoutY="90.0">
+               <image>
+                  <Image url="@assets/icons/payment.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <TableView layoutX="133.0" layoutY="486.0" prefHeight="312.0" prefWidth="1186.0" AnchorPane.leftAnchor="133.0" AnchorPane.rightAnchor="133.0">
+        <columns>
+          <TableColumn prefWidth="154.00003051757812" text="Course ID" />
+          <TableColumn prefWidth="332.0" text="Name" />
+            <TableColumn prefWidth="248.0" text="New Registrations" />
+            <TableColumn prefWidth="248.0" text="Number of Payments" />
+            <TableColumn prefWidth="202.0" text="Total Income" />
+        </columns>
+      </TableView>
+      <JFXDatePicker layoutX="134.0" layoutY="413.0" promptText="Select Date" style="-jfx-default-color: #757575;" />
+   </children>
+</AnchorPane>

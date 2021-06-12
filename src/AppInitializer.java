@@ -20,7 +20,7 @@ public class AppInitializer extends Application {
         Scene mainScene = new Scene(mainForm);
         primaryStage.setScene(mainScene);
         primaryStage.setTitle("Student Payment System");
-        primaryStage.setResizable(true);
+        primaryStage.setResizable(false);
         primaryStage.show();
         primaryStage.centerOnScreen();
     }
