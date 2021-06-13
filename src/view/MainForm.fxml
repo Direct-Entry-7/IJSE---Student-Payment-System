@@ -23,6 +23,9 @@
                <image>
                   <Image url="@assets/icons/my-profile.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
          </children></AnchorPane>
       <AnchorPane id="bottom-bar" fx:id="pneBottomBar" layoutY="925.0" prefHeight="75.0" prefWidth="1750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -68,7 +71,7 @@
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </HBox>
-                  <HBox fx:id="hbxCourses" prefHeight="100.0" prefWidth="300.0" spacing="10.0" styleClass="menu-item">
+                  <HBox fx:id="hbxCourse" onMouseClicked="#hbxCourses_OnMouseClicked" prefHeight="100.0" prefWidth="300.0" spacing="10.0" styleClass="menu-item">
                      <children>
                         <ImageView>
                            <image>
@@ -88,7 +91,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox fx:id="hbxStudents" prefHeight="100.0" prefWidth="300.0" spacing="10.0" styleClass="menu-item">
+                  <HBox fx:id="hbxStudent" onMouseClicked="#hbxStudents_OnMouseClicked" prefHeight="100.0" prefWidth="300.0" spacing="10.0" styleClass="menu-item">
                      <children>
                         <ImageView>
                            <image>
@@ -108,7 +111,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox fx:id="hbxBatches" prefHeight="100.0" prefWidth="300.0" spacing="10.0" styleClass="menu-item">
+                  <HBox fx:id="hbxBatch" onMouseClicked="#hbxBatches_OnMouseClicked" prefHeight="100.0" prefWidth="300.0" spacing="10.0" styleClass="menu-item">
                      <children>
                         <ImageView>
                            <image>
@@ -128,7 +131,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox fx:id="hbxPayments" prefHeight="100.0" prefWidth="300.0" spacing="10.0" styleClass="menu-item">
+                  <HBox fx:id="hbxPayment" onMouseClicked="#hbxPayments_OnMouseClicked" prefHeight="100.0" prefWidth="300.0" spacing="10.0" styleClass="menu-item">
                      <children>
                         <ImageView>
                            <image>
@@ -148,7 +151,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox fx:id="hbxReports" prefHeight="100.0" prefWidth="300.0" spacing="10.0" styleClass="menu-item">
+                  <HBox fx:id="hbxReport" onMouseClicked="#hbxReports_OnMouseClicked" prefHeight="100.0" prefWidth="300.0" spacing="10.0" styleClass="menu-item">
                      <children>
                         <ImageView>
                            <image>
@@ -168,7 +171,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox fx:id="hbxUser" prefHeight="100.0" prefWidth="300.0" spacing="10.0" styleClass="menu-item">
+                  <HBox fx:id="hbxUser" onMouseClicked="#hbxUser_OnMouseClicked" prefHeight="100.0" prefWidth="300.0" spacing="10.0" styleClass="menu-item">
                      <children>
                         <ImageView>
                            <image>
@@ -188,7 +191,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox fx:id="hbxLogOut" prefHeight="118.0" prefWidth="301.0" spacing="10.0" styleClass="menu-item">
+                  <HBox fx:id="hbxLogOut" onMouseClicked="#hbxLogOut_OnMouseClicked" prefHeight="118.0" prefWidth="301.0" spacing="10.0" styleClass="menu-item">
                      <children>
                         <ImageView>
                            <image>

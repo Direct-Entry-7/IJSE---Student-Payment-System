@@ -39,16 +39,16 @@
             </columns>
         </TableView>
         <JFXTextField labelFloat="true" layoutX="457.0" layoutY="156.0" prefHeight="50.0" prefWidth="200.0" promptText="Batch No" unFocusColor="#757575" />
-        <JFXTextField labelFloat="true" layoutX="69.0" layoutY="262.0" prefHeight="50.0" prefWidth="873.0" promptText="Description" unFocusColor="#757575" />
-        <JFXButton defaultButton="true" layoutX="1038.0" layoutY="260.0" opacity="0.7" prefHeight="54.0" prefWidth="111.0" ripplerFill="#9a8484" style="-fx-background-color: black;" text="Add Batch" textFill="WHITE">
+        <JFXTextField labelFloat="true" layoutX="69.0" layoutY="262.0" prefHeight="50.0" prefWidth="1145.0" promptText="Description" unFocusColor="#757575" />
+        <JFXButton defaultButton="true" layoutX="1271.0" layoutY="260.0" opacity="0.7" prefHeight="54.0" prefWidth="111.0" ripplerFill="#9a8484" style="-fx-background-color: black;" text="Add Batch" textFill="WHITE">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </JFXButton>
       <JFXComboBox labelFloat="true" layoutX="69.0" layoutY="156.0" prefHeight="50.0" prefWidth="300.0" promptText="Select Course" />
-      <JFXDatePicker layoutX="726.0" layoutY="156.0" prefHeight="50.0" prefWidth="300.0" promptText="Commence Date" />
+      <JFXDatePicker defaultColor="#757575" layoutX="726.0" layoutY="156.0" prefHeight="50.0" prefWidth="300.0" promptText="Commence Date" />
       <JFXComboBox labelFloat="true" layoutX="69.0" layoutY="388.0" prefHeight="50.0" prefWidth="300.0" promptText="Select Course" />
       <JFXComboBox labelFloat="true" layoutX="414.0" layoutY="388.0" prefHeight="50.0" prefWidth="300.0" promptText="Select Batch" />
-      <JFXDatePicker layoutX="1082.0" layoutY="156.0" prefHeight="50.0" prefWidth="300.0" promptText="Completed Date" />
+      <JFXDatePicker defaultColor="#757575" layoutX="1082.0" layoutY="156.0" prefHeight="50.0" prefWidth="300.0" promptText="Completed Date" />
     </children>
 </AnchorPane>

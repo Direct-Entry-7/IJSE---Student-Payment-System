@@ -39,8 +39,8 @@
       <JFXTextField labelFloat="true" layoutX="69.0" layoutY="163.0" prefHeight="50.0" prefWidth="400.0" promptText="Course Code" unFocusColor="#757575" />
       <JFXTextField labelFloat="true" layoutX="526.0" layoutY="163.0" prefHeight="50.0" prefWidth="400.0" promptText="Name" unFocusColor="#757575" />
       <JFXTextField labelFloat="true" layoutX="980.0" layoutY="163.0" prefHeight="50.0" prefWidth="400.0" promptText="Course Fee(Rs.)" unFocusColor="#757575" />
-      <JFXTextField layoutX="65.0" layoutY="292.0" prefHeight="50.0" prefWidth="400.0" promptText="Duration" unFocusColor="#757575" />
-      <JFXTextField layoutX="526.0" layoutY="292.0" prefHeight="50.0" prefWidth="400.0" promptText="Description" unFocusColor="#757575" />
+      <JFXTextField labelFloat="true" layoutX="65.0" layoutY="292.0" prefHeight="50.0" prefWidth="400.0" promptText="Duration" unFocusColor="#757575" />
+      <JFXTextField labelFloat="true" layoutX="526.0" layoutY="292.0" prefHeight="50.0" prefWidth="400.0" promptText="Description" unFocusColor="#757575" />
       <JFXButton defaultButton="true" layoutX="980.0" layoutY="290.0" opacity="0.7" prefHeight="54.0" prefWidth="111.0" ripplerFill="#9a8484" style="-fx-background-color: black;" text="Add Course" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
