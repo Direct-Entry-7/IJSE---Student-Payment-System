@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pneMainForm" prefHeight="1000.0" prefWidth="1750.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainFormController">
+<AnchorPane fx:id="pneMainForm" prefHeight="1000.0" prefWidth="1750.0" stylesheets="@css/MainFormStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainFormController">
    <children>
-      <AnchorPane id="top-bar" fx:id="pneTopBar" opacity="0.69" prefHeight="100.0" prefWidth="1750.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane id="top-bar" fx:id="pneTopBar" opacity="0.69" prefHeight="100.0" prefWidth="1750.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="85.0" fitWidth="291.67" layoutX="7.0" layoutY="8.0">
                <image>
@@ -25,22 +25,34 @@
                </image>
             </ImageView>
          </children></AnchorPane>
-      <AnchorPane id="bottom-bar" fx:id="pneBottomBar" layoutY="925.0" opacity="0.69" prefHeight="75.0" prefWidth="1750.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <AnchorPane id="side-bar" fx:id="pneSideBar" layoutY="100.0" prefHeight="825.0" prefWidth="300.0" style="-fx-background-color: #ED1C1C;" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0">
+      <AnchorPane id="bottom-bar" fx:id="pneBottomBar" layoutY="925.0" prefHeight="75.0" prefWidth="1750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <VBox prefHeight="825.0" prefWidth="300.0">
+            <Label layoutX="807.0" layoutY="16.0" text="IJSE © 2021" textFill="WHITE">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="1647.0" layoutY="16.0" text="1.0.0" textFill="WHITE">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <AnchorPane id="side-bar" fx:id="pneSideBar" layoutY="100.0" prefHeight="825.0" prefWidth="300.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0">
+         <children>
+            <VBox prefHeight="825.0" prefWidth="300.0" spacing="2.0">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="300.0" spacing="10.0" style="-fx-background-color: #ED1C1C;">
+                  <HBox fx:id="hbxHome" onMouseClicked="#hbxHome_OnMouseClicked" prefHeight="100.0" prefWidth="300.0" spacing="10.0" styleClass="menu-item">
                      <children>
                         <ImageView>
                            <image>
                               <Image url="@assets/icons/home.png" />
                            </image>
                            <HBox.margin>
-                              <Insets left="40.0" top="20.0" />
+                              <Insets left="20.0" top="20.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Label prefHeight="43.0" prefWidth="107.0" text="Home" textFill="WHITE">
+                        <Label prefHeight="44.0" prefWidth="164.0" text="Home" textFill="WHITE">
                            <font>
                               <Font size="36.0" />
                            </font>
@@ -52,19 +64,21 @@
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
                   </HBox>
-                  <Line endX="199.2928924560547" startX="-100.0" stroke="WHITE" />
-                  <HBox prefHeight="100.0" prefWidth="300.0" spacing="10.0" style="-fx-background-color: #ED1C1C;">
+                  <HBox fx:id="hbxCourses" prefHeight="100.0" prefWidth="300.0" spacing="10.0" styleClass="menu-item">
                      <children>
                         <ImageView>
                            <image>
                               <Image url="@assets/icons/courses.png" />
                            </image>
                            <HBox.margin>
-                              <Insets left="40.0" top="20.0" />
+                              <Insets left="20.0" top="20.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Label prefHeight="44.0" prefWidth="158.0" text="Courses" textFill="WHITE">
+                        <Label prefHeight="44.0" prefWidth="187.0" text="Courses" textFill="WHITE">
                            <font>
                               <Font size="36.0" />
                            </font>
@@ -74,18 +88,17 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Line endX="199.2928924560547" startX="-100.0" stroke="WHITE" />
-                  <HBox prefHeight="100.0" prefWidth="300.0" spacing="10.0" style="-fx-background-color: #ED1C1C;">
+                  <HBox fx:id="hbxStudents" prefHeight="100.0" prefWidth="300.0" spacing="10.0" styleClass="menu-item">
                      <children>
                         <ImageView>
                            <image>
                               <Image url="@assets/icons/students.png" />
                            </image>
                            <HBox.margin>
-                              <Insets left="40.0" top="20.0" />
+                              <Insets left="20.0" top="20.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Label prefHeight="44.0" prefWidth="166.0" text="Students" textFill="WHITE">
+                        <Label prefHeight="44.0" prefWidth="186.0" text="Students" textFill="WHITE">
                            <font>
                               <Font size="36.0" />
                            </font>
@@ -95,18 +108,17 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Line endX="199.2928924560547" startX="-100.0" stroke="WHITE" />
-                  <HBox prefHeight="100.0" prefWidth="300.0" spacing="10.0" style="-fx-background-color: #ED1C1C;">
+                  <HBox fx:id="hbxBatches" prefHeight="100.0" prefWidth="300.0" spacing="10.0" styleClass="menu-item">
                      <children>
                         <ImageView>
                            <image>
                               <Image url="@assets/icons/batch.png" />
                            </image>
                            <HBox.margin>
-                              <Insets left="40.0" top="20.0" />
+                              <Insets left="20.0" top="20.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Label prefHeight="44.0" prefWidth="166.0" text="Batches" textFill="WHITE">
+                        <Label prefHeight="44.0" prefWidth="185.0" text="Batches" textFill="WHITE">
                            <font>
                               <Font size="36.0" />
                            </font>
@@ -116,18 +128,17 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Line endX="199.2928924560547" startX="-100.0" stroke="WHITE" />
-                  <HBox prefHeight="100.0" prefWidth="300.0" spacing="10.0" style="-fx-background-color: #ED1C1C;">
+                  <HBox fx:id="hbxPayments" prefHeight="100.0" prefWidth="300.0" spacing="10.0" styleClass="menu-item">
                      <children>
                         <ImageView>
                            <image>
                               <Image url="@assets/icons/payment.png" />
                            </image>
                            <HBox.margin>
-                              <Insets left="40.0" top="20.0" />
+                              <Insets left="20.0" top="20.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Label prefHeight="44.0" prefWidth="181.0" text="Payments" textFill="WHITE">
+                        <Label prefHeight="44.0" prefWidth="263.0" text="Payments" textFill="WHITE">
                            <font>
                               <Font size="36.0" />
                            </font>
@@ -137,15 +148,14 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Line endX="199.2928924560547" startX="-100.0" stroke="WHITE" />
-                  <HBox prefHeight="100.0" prefWidth="300.0" spacing="10.0" style="-fx-background-color: #ED1C1C;">
+                  <HBox fx:id="hbxReports" prefHeight="100.0" prefWidth="300.0" spacing="10.0" styleClass="menu-item">
                      <children>
                         <ImageView>
                            <image>
                               <Image url="@assets/icons/assignment.png" />
                            </image>
                            <HBox.margin>
-                              <Insets left="40.0" top="20.0" />
+                              <Insets left="20.0" top="20.0" />
                            </HBox.margin>
                         </ImageView>
                         <Label prefHeight="44.0" prefWidth="181.0" text="Reports" textFill="WHITE">
@@ -158,15 +168,14 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Line endX="199.2928924560547" startX="-100.0" stroke="WHITE" />
-                  <HBox prefHeight="100.0" prefWidth="300.0" spacing="10.0" style="-fx-background-color: #ED1C1C;">
+                  <HBox fx:id="hbxUser" prefHeight="100.0" prefWidth="300.0" spacing="10.0" styleClass="menu-item">
                      <children>
                         <ImageView>
                            <image>
                               <Image url="@assets/icons/user.png" />
                            </image>
                            <HBox.margin>
-                              <Insets left="40.0" top="20.0" />
+                              <Insets left="20.0" top="20.0" />
                            </HBox.margin>
                         </ImageView>
                         <Label prefHeight="44.0" prefWidth="181.0" text="User" textFill="WHITE">
@@ -179,15 +188,14 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Line endX="199.2928924560547" startX="-100.0" stroke="WHITE" />
-                  <HBox prefHeight="100.0" prefWidth="300.0" spacing="10.0" style="-fx-background-color: #ED1C1C;">
+                  <HBox fx:id="hbxLogOut" prefHeight="118.0" prefWidth="301.0" spacing="10.0" styleClass="menu-item">
                      <children>
                         <ImageView>
                            <image>
                               <Image url="@assets/icons/logout.png" />
                            </image>
                            <HBox.margin>
-                              <Insets left="40.0" top="20.0" />
+                              <Insets left="20.0" top="20.0" />
                            </HBox.margin>
                         </ImageView>
                         <Label prefHeight="44.0" prefWidth="181.0" text="Log out" textFill="WHITE">
@@ -203,6 +211,10 @@
                </children>
             </VBox>
          </children></AnchorPane>
-      <AnchorPane id="main-content" fx:id="pneMainContext" layoutX="300.0" layoutY="100.0" prefHeight="825.0" prefWidth="1450.0" style="-fx-background-colr: white" />
+      <AnchorPane id="main-content" fx:id="pneMainContext" layoutX="299.0" layoutY="100.0" prefHeight="825.0" prefWidth="1450.0" style="-fx-background-color: white;">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </AnchorPane>
    </children>
 </AnchorPane>

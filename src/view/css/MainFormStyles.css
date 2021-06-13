@@ -1,0 +1,27 @@
+#top-bar{
+    -fx-background-color: black;
+    -fx-opacity: 0.69;
+}
+
+#bottom-bar{
+    -fx-background-color: black;
+    -fx-opacity: 0.69;
+}
+
+#side-bar{
+    -fx-background-color: white;
+}
+
+.menu-item{
+    -fx-background-color: #ED1C1C;
+}
+
+.menu-item:hover{
+    -fx-background-color: black;
+    -fx-opacity: 0.69;
+    -fx-cursor: hand;
+}
+
+
+
+
