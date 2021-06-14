@@ -19,9 +19,9 @@
                   <Image url="@assets/ijse-logo.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="845.0" layoutY="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+            <ImageView fx:id="icnMyAccount" fitHeight="60.0" fitWidth="60.0" layoutX="845.0" layoutY="20.0" onMouseClicked="#icnMyAccount_OnMouseClicked" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                <image>
-                  <Image url="@assets/icons/my-profile.png" />
+                  <Image url="@assets/icons/my-account.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />

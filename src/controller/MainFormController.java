@@ -57,6 +57,10 @@ public class MainFormController {
         loadUI("Logout");
     }
 
+    public void icnMyAccount_OnMouseClicked(MouseEvent mouseEvent) {
+        loadUI("MyAccount");
+    }
+
     private void loadUI(String name) {
         pneMainContext.getChildren().clear();
         URL resource = getClass().getResource("/view/" + name + "Form.fxml");
@@ -154,9 +158,17 @@ public class MainFormController {
                 hbxUser.setStyle(inActive);
                 hbxLogOut.setStyle(active);
                 break;
+            case "MyAccount":
+                hbxHome.setStyle(inActive);
+                hbxCourse.setStyle(inActive);
+                hbxStudent.setStyle(inActive);
+                hbxBatch.setStyle(inActive);
+                hbxPayment.setStyle(inActive);
+                hbxReport.setStyle(inActive);
+                hbxUser.setStyle(inActive);
+                hbxLogOut.setStyle(inActive);
         }
 
     }
-
 
 }

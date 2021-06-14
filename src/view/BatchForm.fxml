@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane mouseTransparent="true" prefHeight="825.0" prefWidth="1450.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BatchFormController">
+<AnchorPane prefHeight="825.0" prefWidth="1450.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BatchFormController">
 
     <children>
         <Line endX="1347.878662109375" endY="1.52587890625E-5" layoutX="102.0" layoutY="102.0" startX="-100.0" stroke="#bdbdbd" strokeWidth="3.0" AnchorPane.leftAnchor="-0.1213226318359375" AnchorPane.rightAnchor="0.1213226318359375" />
