@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="825.0" prefWidth="1450.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PaymentFormController">
+
+    <children>
+        <Line endX="1347.878662109375" endY="1.52587890625E-5" layoutX="102.0" layoutY="102.0" startX="-100.0" stroke="#bdbdbd" strokeWidth="3.0" AnchorPane.leftAnchor="-0.1213226318359375" AnchorPane.rightAnchor="0.1213226318359375" />
+        <ImageView layoutX="65.0" layoutY="23.0">
+            <image>
+                <Image url="@assets/icons/payment-colored.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="176.0" layoutY="31.0" text="Payments" textFill="#757575">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+        <TableView layoutX="69.0" layoutY="314.0" prefHeight="478.0" prefWidth="1313.0" AnchorPane.leftAnchor="69.0" AnchorPane.rightAnchor="70.0">
+            <columns>
+                <TableColumn prefWidth="149.0" text="Date" />
+                <TableColumn prefWidth="207.00001525878906" text="Student Name" />
+                <TableColumn prefWidth="183.0" text="Course " />
+                <TableColumn prefWidth="197.0" text="Batch" />
+            <TableColumn prefWidth="196.0" text="Payment Method" />
+            <TableColumn prefWidth="162.0" text="Description" />
+            <TableColumn prefWidth="218.121337890625" text="Payment (Rs.)" />
+            </columns>
+        </TableView>
+        <JFXButton defaultButton="true" layoutX="1239.0" layoutY="122.0" opacity="0.7" prefHeight="54.0" prefWidth="143.0" ripplerFill="#9a8484" style="-fx-background-color: black;" text="Add New Payment" textFill="WHITE">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </JFXButton>
+        <JFXTextField labelFloat="true" layoutX="69.0" layoutY="227.0" prefHeight="50.0" prefWidth="491.0" promptText="Query" unFocusColor="#757575" />
+
+    </children>
+</AnchorPane>
