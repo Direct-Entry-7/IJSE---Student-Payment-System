@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pneLoginForm" prefHeight="1000.0" prefWidth="1750.0" stylesheets="@css/MainFormStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginFormController">
+    <children>
+        <AnchorPane id="top-bar" fx:id="pneTopBar" opacity="0.69" prefHeight="100.0" prefWidth="1750.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        </AnchorPane>
+        <AnchorPane id="bottom-bar" fx:id="pneBottomBar" layoutY="925.0" prefHeight="75.0" prefWidth="1750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <Label layoutX="807.0" layoutY="16.0" text="IJSE © 2021" textFill="WHITE">
+                    <font>
+                        <Font size="36.0" />
+                    </font>
+                </Label>
+                <Label layoutX="1647.0" layoutY="16.0" text="1.0.0" textFill="WHITE">
+                    <font>
+                        <Font size="36.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+      <ImageView fitHeight="105.0" fitWidth="360.0" layoutX="695.0" layoutY="263.0">
+         <image>
+            <Image url="@assets/ijse-logo-login.png" />
+         </image>
+      </ImageView>
+      <JFXTextField labelFloat="true" layoutX="685.0" layoutY="467.0" prefHeight="50.0" prefWidth="400.0" promptText="Email" />
+      <JFXButton fx:id="btnLogin" defaultButton="true" layoutX="830.0" layoutY="714.0" opacity="0.7" prefHeight="54.0" prefWidth="111.0" ripplerFill="#9a8484" style="-fx-background-color: black;" text="Login" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Label layoutX="685.0" layoutY="658.0" text="Forgot Password?" underline="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Label>
+      <ImageView layoutX="1041.0" layoutY="478.0">
+         <image>
+            <Image url="@assets/icons/group.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="1041.0" layoutY="586.0">
+         <image>
+            <Image url="@assets/icons/visibility_off.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+      </ImageView>
+      <JFXPasswordField labelFloat="true" layoutX="685.0" layoutY="580.0" prefHeight="50.0" prefWidth="400.0" promptText="Password" />
+
+    </children>
+</AnchorPane>
