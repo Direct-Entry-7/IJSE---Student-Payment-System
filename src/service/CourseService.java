@@ -13,7 +13,7 @@ public class CourseService {
     }
 
     public void saveCourse(Course course){
-
+        System.out.println(course);
     }
 
     public void updateCourse(Course course){

@@ -60,4 +60,15 @@ public class Course implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "courseCode='" + courseCode + '\'' +
+                ", name='" + name + '\'' +
+                ", courseFee=" + courseFee +
+                ", duration='" + duration + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
