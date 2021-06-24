@@ -60,7 +60,7 @@ public class BatchService {
         return batchDB;
     }
 
-    private Batch findBatch(String batchNo) throws NotFoundException {
+    public Batch findBatch(String batchNo) throws NotFoundException {
         for (Batch batch : batchDB) {
 
             if (batch.getBatchNo().equals(batchNo)) {
