@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
@@ -36,16 +37,23 @@
                 <TableColumn prefWidth="143.0" text="Operation" />
             </columns>
         </TableView>
-        <JFXTextField labelFloat="true" layoutX="69.0" layoutY="131.0" prefHeight="50.0" prefWidth="400.0" promptText="Name" unFocusColor="#757575" />
-        <JFXTextField labelFloat="true" layoutX="526.0" layoutY="131.0" prefHeight="50.0" prefWidth="400.0" promptText="Email" unFocusColor="#757575" />
-        <JFXTextField labelFloat="true" layoutX="982.0" layoutY="131.0" prefHeight="50.0" prefWidth="400.0" promptText="Mobile No" unFocusColor="#757575" />
-        <JFXTextField labelFloat="true" layoutX="69.0" layoutY="223.0" prefHeight="50.0" prefWidth="400.0" promptText="NIC" unFocusColor="#757575" />
-        <JFXTextField labelFloat="true" layoutX="526.0" layoutY="223.0" prefHeight="50.0" prefWidth="400.0" promptText="DOB" unFocusColor="#757575" />
-        <JFXTextField labelFloat="true" layoutX="65.0" layoutY="324.0" prefHeight="50.0" prefWidth="873.0" promptText="Address" unFocusColor="#757575" />
-        <JFXButton defaultButton="true" layoutX="982.0" layoutY="320.0" opacity="0.7" prefHeight="54.0" prefWidth="111.0" ripplerFill="#9a8484" style="-fx-background-color: black;" text="Add Student" textFill="WHITE">
+        <JFXTextField fx:id="txtName" labelFloat="true" layoutX="69.0" layoutY="131.0" prefHeight="50.0" prefWidth="400.0" promptText="Name" unFocusColor="#757575" />
+        <JFXTextField fx:id="txtEmail" labelFloat="true" layoutX="526.0" layoutY="131.0" prefHeight="50.0" prefWidth="400.0" promptText="Email" unFocusColor="#757575" />
+        <JFXTextField fx:id="txtMobileNumber" labelFloat="true" layoutX="982.0" layoutY="131.0" prefHeight="50.0" prefWidth="400.0" promptText="Mobile No" unFocusColor="#757575" />
+        <JFXTextField fx:id="txtNIC" labelFloat="true" layoutX="69.0" layoutY="223.0" prefHeight="50.0" prefWidth="400.0" promptText="NIC" unFocusColor="#757575" />
+        <JFXTextField fx:id="txtDOB" labelFloat="true" layoutX="526.0" layoutY="223.0" prefHeight="50.0" prefWidth="400.0" promptText="DOB" unFocusColor="#757575" />
+        <JFXTextField fx:id="txtAddress" labelFloat="true" layoutX="65.0" layoutY="324.0" prefHeight="50.0" prefWidth="1122.0" promptText="Address" unFocusColor="#757575" />
+        <JFXButton defaultButton="true" layoutX="1271.0" layoutY="322.0" opacity="0.7" prefHeight="54.0" prefWidth="111.0" ripplerFill="#9a8484" style="-fx-background-color: black;" text="Save" textFill="WHITE">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </JFXButton>
+      <JFXButton defaultButton="true" layoutX="1249.0" layoutY="26.0" opacity="0.7" prefHeight="54.0" prefWidth="133.0" ripplerFill="#9a8484" style="-fx-background-color: black;" text="+ NewStudent" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXRadioButton layoutX="1008.0" layoutY="248.0" selected="true" text="Male" />
+      <JFXRadioButton layoutX="1152.0" layoutY="248.0" text="Female" />
     </children>
 </AnchorPane>

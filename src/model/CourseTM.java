@@ -2,7 +2,9 @@ package model;
 
 import javafx.scene.control.Button;
 
-public class CourseTM {
+import java.io.Serializable;
+
+public class CourseTM implements Serializable {
     private String courseCode;
     private String name;
     private Double courseFee;
