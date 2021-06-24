@@ -45,6 +45,8 @@ public class CourseFormController {
         tblCourses.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("description"));
         tblCourses.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("btn"));
 
+        btnAddCourse.setVisible(false);
+
         tblCourses.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
                     if (newValue != null) {
@@ -57,6 +59,7 @@ public class CourseFormController {
     }
 
     private void setData(CourseTM value) {
+        btnAddCourse.setVisible(true);
         txtCourseCode.setText(value.getCourseCode());
         txtCourseCode.setDisable(true);
         txtName.setText(value.getName());

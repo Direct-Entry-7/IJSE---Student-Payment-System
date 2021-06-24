@@ -30,7 +30,7 @@ public class CourseService {
 
     public void saveCourse(Course course) throws DuplicateEntryException {
         if (exitsCourse(course.getCourseCode())) {
-
+            throw new DuplicateEntryException();
         }
         coursesDB.add(course);
     }
@@ -57,11 +57,10 @@ public class CourseService {
     }
 
     public List<Course> getAllCourses() {
-
         return coursesDB;
     }
 
-    private Course findCourse(String courseCode) throws NotFoundException {
+    public Course findCourse(String courseCode) throws NotFoundException {
         for (Course course : coursesDB) {
 
             if (course.getCourseCode().equals(courseCode)) {
