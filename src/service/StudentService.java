@@ -55,7 +55,7 @@ public class StudentService {
         studentDB.remove(student);
     }
 
-    public List<Student> getAllCourses() {
+    public List<Student> getAllStudents() {
 
         return studentDB;
     }
