@@ -60,7 +60,7 @@ public class StudentService {
         return studentDB;
     }
 
-    private Student findStudent(String nic) throws NotFoundException {
+    public Student findStudent(String nic) throws NotFoundException {
         for (Student student : studentDB) {
 
             if (student.getNic().equals(nic)) {
