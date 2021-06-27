@@ -45,7 +45,7 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></JFXDatePicker>
-        <JFXDatePicker fx:id="dtCompletedDate" defaultColor="#4059a9" layoutX="1082.0" layoutY="206.0" prefHeight="50.0" prefWidth="300.0" promptText="Completed Date">
+        <JFXDatePicker fx:id="dtCompletedDate" defaultColor="#4059a9" layoutX="1082.0" layoutY="206.0" overLay="true" prefHeight="50.0" prefWidth="300.0" promptText="Completed Date">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></JFXDatePicker>
