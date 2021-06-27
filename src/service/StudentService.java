@@ -12,11 +12,11 @@ public class StudentService {
     private static final List<Student> studentDB = new ArrayList<>();
 
     static {
-        Student student1 = new Student("Rajitha","rajitha@gmail.com","0718284821","9312938282",LocalDate.of(1995,02,10),"male","address1");
-        Student student2 = new Student("Pashan","pashan@yahoo.com","0778284111","9512938224",LocalDate.of(1995,12,15),"male","address2");
-        Student student3 = new Student("Kusal","kusal@hotmail.com","0777284820","9212938278",LocalDate.of(1995,10,18),"male","address3");
-        Student student4 = new Student("Panduka","panduka@gmail.com","0718284512","9112938269",LocalDate.of(1995,04,13),"male","address4");
-        Student student5 = new Student("Lasitha","lasitha@gmail.com","0718284822","9512938803",LocalDate.of(1995,07,10),"male","address5");
+        Student student1 = new Student("9312938282v","Rajitha","rajitha@gmail.com","0718284821",LocalDate.of(1995,02,10),"Male","address1");
+        Student student2 = new Student("9512938224v","Pashan","pashan@yahoo.com","0778284111",LocalDate.of(1995,12,15),"Male","address2");
+        Student student3 = new Student("9212938278v","Kusal","kusal@hotmail.com","0777284820",LocalDate.of(1995,10,18),"Male","address3");
+        Student student4 = new Student("9112938269v","Panduka","panduka@gmail.com","0718284512",LocalDate.of(1995,04,13),"Male","address4");
+        Student student5 = new Student("9512938803v","Lasitha","lasitha@gmail.com","0718284822",LocalDate.of(1995,07,10),"Male","address5");
         studentDB.add(student1);
         studentDB.add(student2);
         studentDB.add(student3);

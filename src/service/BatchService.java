@@ -5,6 +5,7 @@ import model.Student;
 import service.exception.DuplicateEntryException;
 import service.exception.NotFoundException;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +14,11 @@ public class BatchService {
     private static final List<Batch> batchDB = new ArrayList<>();
 
     static {
-        Batch batch1 = new Batch("DEP", "3", LocalDate.of(2019, 05, 21), LocalDate.of(2019, 11, 20), "Batch 03");
-        Batch batch2 = new Batch("DEP", "4", LocalDate.of(2019, 05, 21), LocalDate.of(2019, 11, 20), "Batch 04");
-        Batch batch3 = new Batch("DEP", "5", LocalDate.of(2019, 05, 21), LocalDate.of(2019, 11, 20), "Batch 05");
-        Batch batch4 = new Batch("DEP", "6", LocalDate.of(2019, 05, 21), LocalDate.of(2019, 11, 20), "Batch 06");
-        Batch batch5 = new Batch("DEP", "7", LocalDate.of(2019, 05, 21), LocalDate.of(2019, 11, 20), "Batch 07");
+        Batch batch1 = new Batch("001", "3", LocalDate.of(2019, 05, 21), LocalDate.of(2019, 11, 20), "Batch 03", BigDecimal.valueOf(75000));
+        Batch batch2 = new Batch("002", "4", LocalDate.of(2019, 05, 21), LocalDate.of(2019, 11, 20), "Batch 04",BigDecimal.valueOf(80000));
+        Batch batch3 = new Batch("003", "5", LocalDate.of(2019, 05, 21), LocalDate.of(2019, 11, 20), "Batch 05",BigDecimal.valueOf(85000));
+        Batch batch4 = new Batch("001", "6", LocalDate.of(2019, 05, 21), LocalDate.of(2019, 11, 20), "Batch 06",BigDecimal.valueOf(90000));
+        Batch batch5 = new Batch("002", "7", LocalDate.of(2019, 05, 21), LocalDate.of(2019, 11, 20), "Batch 07",BigDecimal.valueOf(100000));
         batchDB.add(batch1);
         batchDB.add(batch2);
         batchDB.add(batch3);

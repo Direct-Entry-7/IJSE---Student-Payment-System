@@ -1,29 +1,33 @@
 package model;
 
+import javafx.scene.control.Button;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Objects;
 
-public class Batch implements Serializable {
+public class BatchTM implements Serializable {
     private String courseCode;
     private String batchNo;
     private LocalDate commenceDate;
     private LocalDate completedDate;
     private String description;
     private BigDecimal courseFee;
+    private Button viewBatchDetails;
+    private Button delete;
 
-    public Batch() {
-
+    public BatchTM() {
     }
 
-    public Batch(String courseCode, String batchNo, LocalDate commenceDate, LocalDate completedDate, String description, BigDecimal courseFee) {
+    public BatchTM(String courseCode, String batchNo, LocalDate commenceDate, LocalDate completedDate, String description, BigDecimal courseFee, Button viewBatchDetails, Button delete) {
         this.courseCode = courseCode;
         this.batchNo = batchNo;
         this.commenceDate = commenceDate;
         this.completedDate = completedDate;
         this.description = description;
         this.courseFee = courseFee;
+        this.viewBatchDetails = viewBatchDetails;
+        this.delete = delete;
     }
 
     public String getCourseCode() {
@@ -66,16 +70,27 @@ public class Batch implements Serializable {
         this.description = description;
     }
 
+    public Button getViewBatchDetails() {
+        return viewBatchDetails;
+    }
+
+    public void setViewBatchDetails(Button viewBatchDetails) {
+        this.viewBatchDetails = viewBatchDetails;
+    }
+
+    public Button getDelete() {
+        return delete;
+    }
+
+    public void setDelete(Button delete) {
+        this.delete = delete;
+    }
+
     public BigDecimal getCourseFee() {
         return courseFee;
     }
 
     public void setCourseFee(BigDecimal courseFee) {
         this.courseFee = courseFee;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(courseCode);
     }
 }

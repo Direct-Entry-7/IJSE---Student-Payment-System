@@ -1,0 +1,71 @@
+
+#tbl-batch .column-header{
+    -fx-background-color: #757575;
+    -fx-size: 60px;
+    -fx-font-family: "Ubuntu";
+    -fx-font-size: 14px;
+
+}
+
+#tbl-batch .table-row-cell:filled:hover{
+    -fx-background-color: silver;
+    -fx-background-insets: 0px 1px 0px 1px;
+    -fx-background-radius: 4px;
+}
+
+#tbl-batch .table-row-cell:filled:selected{
+    -fx-background-color: rgba(201, 201, 201, 0.71);
+    -fx-background-insets: 0px 1px 0px 1px;
+    -fx-background-radius: 4px;
+
+}
+
+#tbl-batch .table-row-cell:filled:selected *{
+    -fx-text-fill: white;
+
+}
+
+
+
+#tbl-batch .table-row-cell:empty{
+    -fx-background-color: white;
+}
+
+#tbl-batch{
+    -fx-border-color: rgba(0,0,0,0.2);
+    -fx-background-insets: 0px, 0px;
+    -fx-padding: 0;
+}
+
+#tbl-batch .cell{
+    -fx-cell-size: 50px;
+    -fx-wrap-text: true;
+    -fx-alignment: center;
+}
+
+#tbl-batch .table-cell:empty{
+    -fx-border-color: transparent;
+}
+
+.delete-button{
+    -fx-background-color: #ED1C1C;
+    -fx-text-fill: white;
+}
+
+.delete-button:hover{
+    -fx-background-color: red;
+    -fx-cursor: hand;
+    -fx-text-fill: white;
+}
+
+.batch-details-button{
+    -fx-background-color: black;
+    -fx-opacity: 0.7;
+    -fx-text-fill: white;
+}
+
+.batch-details-button:hover{
+    -fx-background-color: #757575;
+    -fx-cursor: hand;
+    -fx-text-fill: white;
+}

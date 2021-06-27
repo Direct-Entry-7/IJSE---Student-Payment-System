@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Student implements Serializable {
+public class StudentTM implements Serializable {
     private String nic;
     private String name;
     private String email;
@@ -13,12 +13,13 @@ public class Student implements Serializable {
     private LocalDate dob;
     private String gender;
     private String address;
+    private Button btnDelete;
 
-    public Student() {
+    public StudentTM() {
 
     }
 
-    public Student(String nic, String name, String email, String mobileNumber, LocalDate dob, String gender, String address) {
+    public StudentTM(String nic, String name, String email, String mobileNumber, LocalDate dob, String gender, String address, Button btnDelete) {
         this.nic = nic;
         this.name = name;
         this.email = email;
@@ -26,6 +27,7 @@ public class Student implements Serializable {
         this.dob = dob;
         this.gender = gender;
         this.address = address;
+        this.btnDelete = btnDelete;
     }
 
     public String getNic() {
@@ -82,5 +84,13 @@ public class Student implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Button getBtnDelete() {
+        return btnDelete;
+    }
+
+    public void setBtnDelete(Button btnDelete) {
+        this.btnDelete = btnDelete;
     }
 }
