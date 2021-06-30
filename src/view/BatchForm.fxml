@@ -56,7 +56,7 @@
             </cursor>
         </JFXButton>
         <JFXComboBox fx:id="cmbTableCourse" labelFloat="true" layoutX="69.0" layoutY="422.0" prefHeight="50.0" prefWidth="300.0" promptText="Select Course" />
-        <JFXComboBox fx:id="cmbBatch" labelFloat="true" layoutX="407.0" layoutY="422.0" prefHeight="50.0" prefWidth="300.0" promptText="Select Batch" />
+<!--        <JFXComboBox fx:id="cmbBatch" labelFloat="true" layoutX="407.0" layoutY="422.0" prefHeight="50.0" prefWidth="300.0" promptText="Select Batch" />-->
       <JFXButton fx:id="btnAddNewBatch" defaultButton="true" layoutX="1271.0" layoutY="117.0" onAction="#btnAddNewBatch_OnAction" opacity="0.7" prefHeight="54.0" prefWidth="111.0" ripplerFill="#9a8484" style="-fx-background-color: black;" text="+ New Batch" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />

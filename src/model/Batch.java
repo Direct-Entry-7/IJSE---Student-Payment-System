@@ -3,6 +3,8 @@ package model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Batch implements Serializable {
@@ -12,18 +14,21 @@ public class Batch implements Serializable {
     private LocalDate completedDate;
     private String description;
     private BigDecimal courseFee;
+    private List<Student> students = new ArrayList<>();
 
-    public Batch() {
 
-    }
-
-    public Batch(String courseCode, String batchNo, LocalDate commenceDate, LocalDate completedDate, String description, BigDecimal courseFee) {
+    public Batch(String courseCode, String batchNo, LocalDate commenceDate, LocalDate completedDate, String description, BigDecimal courseFee, List<Student> students) {
         this.courseCode = courseCode;
         this.batchNo = batchNo;
         this.commenceDate = commenceDate;
         this.completedDate = completedDate;
         this.description = description;
         this.courseFee = courseFee;
+        this.setStudents(students);
+    }
+
+    public Batch() {
+
     }
 
     public String getCourseCode() {
@@ -77,5 +82,26 @@ public class Batch implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(courseCode);
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    @Override
+    public String toString() {
+        return "Batch{" +
+                "courseCode='" + courseCode + '\'' +
+                ", batchNo='" + batchNo + '\'' +
+                ", commenceDate=" + commenceDate +
+                ", completedDate=" + completedDate +
+                ", description='" + description + '\'' +
+                ", courseFee=" + courseFee +
+                ", students=" + students +
+                '}';
     }
 }

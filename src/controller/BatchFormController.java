@@ -132,19 +132,17 @@ public class BatchFormController {
 
             btnViewBatchDetails.setOnAction(event -> {
                 System.out.println("Button selected");
+
                 try {
-                    Parent p = FXMLLoader.load(getClass().getResource("/view/TestForm.fxml"));
+                    Parent p = FXMLLoader.load(getClass().getResource("/view/BatchDetailForm.fxml"));
                     AnchorPane pneMainContext = (AnchorPane) tblBatches.getParent().getParent();
                     pneMainContext.getChildren().clear();
-                    p.setUserData(batchTM);
-                    Platform.runLater(() -> {
-                        pneMainContext.getChildren().add(p);
-                    });
 
+                    p.setUserData(batchTM);
+                    pneMainContext.getChildren().add(p);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             });
 
 
@@ -160,7 +158,7 @@ public class BatchFormController {
         BigDecimal courseFee = BigDecimal.valueOf(Integer.valueOf(txtCourseFee.getText()));
         String description = txtDescription.getText();
 
-        Batch batch = new Batch(courseCode, batchNo, commenceDate, completedDate, description, courseFee);
+        Batch batch = new Batch(courseCode, batchNo, commenceDate, completedDate, description, courseFee,null);
 
         if (btnSave.getText().equals("Save")) {
             try {
