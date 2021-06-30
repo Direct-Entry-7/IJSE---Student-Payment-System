@@ -57,7 +57,7 @@ public class BatchDetailFormController {
 //                System.out.println("Aulak");
 //            }
             loadBatch((BatchTM) pneBatchDetails.getUserData());
-            txtSearchByNIC.setText("9512938224v");
+//            txtSearchByNIC.setText("9512938224v");
 
         });
     }
