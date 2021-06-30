@@ -16,9 +16,7 @@ import service.BatchService;
 import service.StudentService;
 import service.exception.NotFoundException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 public class BatchDetailFormController {
@@ -45,7 +43,6 @@ public class BatchDetailFormController {
     private ObservableList<BatchDetailTM> studentsTableList = FXCollections.observableArrayList();
 
     public void initialize() {
-        System.out.println("initialized called");
         Platform.runLater(() -> {
             tblStudents.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("nic"));
             tblStudents.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("studentName"));
@@ -53,11 +50,9 @@ public class BatchDetailFormController {
             tblStudents.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("mobileNumber"));
             tblStudents.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("address"));
             tblStudents.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("btnDelete"));
-//            if((BatchTM) pneBatchDetails.getUserData() == null){
-//                System.out.println("Aulak");
-//            }
+
             loadBatch((BatchTM) pneBatchDetails.getUserData());
-//            txtSearchByNIC.setText("9512938224v");
+            txtSearchByNIC.setText("9512938224v");
 
         });
     }
@@ -92,19 +87,19 @@ public class BatchDetailFormController {
             btnDelete.getStyleClass().add("delete-button");
 
             BatchDetailTM batchDetailTM = new BatchDetailTM(student.getNic(), student.getName(), student.getEmail(), student.getMobileNumber(), student.getAddress(), btnDelete);
-            System.out.println(batchDetailTM);
+
             studentsTableList.add(batchDetailTM);
 
             btnDelete.setOnAction(event -> {
                 Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure want to delete this student?", ButtonType.YES, ButtonType.NO).showAndWait();
                 if (buttonType.get() == ButtonType.YES) {
-                    System.out.println("Called");
+
                     tblStudents.getItems().remove(batchDetailTM);
                     batchStudents.removeIf(e -> e.getNic().equals(student.getNic()));
                     lblNoOfStudents.setText(String.valueOf(batchStudents.size()));
                     Platform.runLater(() -> {
                         try {
-                            System.out.println(batchStudents.size());
+
                             Batch updatedBatch = new Batch(batch.getCourseCode(), batch.getBatchNo(), batch.getCommenceDate(), batch.getCompletedDate(), batch.getDescription(), batch.getCourseFee(), batchStudents);
                             batchService.updateBatch(updatedBatch);
                         } catch (NotFoundException e) {
@@ -141,19 +136,21 @@ public class BatchDetailFormController {
         if (buttonType.get() == ButtonType.YES) {
             JFXButton btnDelete = new JFXButton("Delete");
             btnDelete.getStyleClass().add("delete-button");
-//
-//            BatchDetailTM batchDetailTM = new BatchDetailTM(student.getNic(), student.getName(), student.getEmail(), student.getMobileNumber(), student.getAddress(), btnDelete);
-//            studentsTableList.add(batchDetailTM);
-//            lblNoOfStudents.setText(String.valueOf(batchStudents.size()));
-
             batchStudents.add(student);
             lblNoOfStudents.setText(String.valueOf(batchStudents.size()));
             try {
+
+                Map<String, String> courseWithBatch = student.getCourseWithBatch();
+                courseWithBatch.put(batch.getCourseCode(),batch.getBatchNo());
+
+                Student updatedStudent = new Student(this.student.getNic(), this.student.getName(), this.student.getEmail(), this.student.getMobileNumber(), this.student.getDob(), this.student.getGender(), this.student.getAddress(), courseWithBatch);
+                studentService.updateStudent(updatedStudent);
                 Batch updatedBatch = new Batch(batch.getCourseCode(), batch.getBatchNo(), batch.getCommenceDate(), batch.getCompletedDate(), batch.getDescription(), batch.getCourseFee(), batchStudents);
                 batchService.updateBatch(updatedBatch);
                 Platform.runLater(() -> {
                     loadStudentsTable();
                 });
+                System.out.println(student.getCourseWithBatch().get("001"));
             } catch (NotFoundException e) {
                 e.printStackTrace();
             }

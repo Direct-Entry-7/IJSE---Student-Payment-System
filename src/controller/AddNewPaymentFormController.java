@@ -1,19 +1,25 @@
 package controller;
 
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
+import model.Payment;
 import model.Student;
 import service.StudentService;
 import service.exception.NotFoundException;
 
 import java.io.File;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class AddNewPaymentFormController {
 
@@ -23,6 +29,14 @@ public class AddNewPaymentFormController {
     public Label lblEmail;
     public Label lblMobileNo;
     public Label lblAddress;
+    public JFXComboBox cmbSelectCourse;
+    public JFXComboBox cmbDescription;
+    public JFXComboBox cmbPaymentMethod;
+    public JFXTextField txtAmount;
+    public JFXTextField txtNote;
+    public ImageView fleSelectReceipt;
+    public JFXDatePicker dtSelectDate;
+    public JFXTextField txtRefNo;
     private Student student;
     private StudentService studentService = new StudentService();
 
@@ -52,5 +66,23 @@ public class AddNewPaymentFormController {
             new Alert(Alert.AlertType.ERROR, "Not found student with this NIC. Try again", ButtonType.OK).show();
         }
 
+    }
+
+    public void btnPay_OnAction(ActionEvent actionEvent) {
+        String courseCode = cmbSelectCourse.getSelectionModel().getSelectedItem().toString();
+        String description = cmbDescription.getSelectionModel().getSelectedItem().toString();
+        String paymentMethod = cmbPaymentMethod.getSelectionModel().getSelectedItem().toString();
+        LocalDate selectedDate = LocalDate.parse(dtSelectDate.getValue().toString());
+        BigDecimal amount = BigDecimal.valueOf(Integer.valueOf(txtAmount.getText()));
+        String refNo = txtRefNo.getText();        
+        String note = txtNote.getText();
+
+        new Payment(refNo, courseCode, description, paymentMethod, selectedDate, null, amount, note, student)
+    }
+
+    public void btnClear_OnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnPrint_OnAction(ActionEvent actionEvent) {
     }
 }

@@ -2,7 +2,9 @@ package model;
 
 import javafx.scene.control.Button;
 
-public class BatchDetailTM {
+import java.io.Serializable;
+
+public class BatchDetailTM implements Serializable {
     private String nic;
     private String studentName;
     private String email;
