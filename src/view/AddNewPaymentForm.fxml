@@ -99,7 +99,7 @@
                   <DropShadow />
                </effect>
                <children>
-                  <JFXTextField  accessibleRole="BUTTON" editable="false" labelFloat="true" layoutX="443.0" layoutY="339.0" prefHeight="50.0" prefWidth="303.0" promptText="Select Receipt" unFocusColor="#757575" />
+                  <JFXTextField accessibleRole="BUTTON" editable="false" labelFloat="true" layoutX="443.0" layoutY="339.0" prefHeight="50.0" prefWidth="303.0" promptText="Select Receipt" unFocusColor="#757575" />
                   <JFXTextField fx:id="txtRefNo" labelFloat="true" layoutX="69.0" layoutY="339.0" prefHeight="50.0" prefWidth="303.0" promptText="Ref No" unFocusColor="#757575" />
                   <JFXDatePicker fx:id="dtSelectDate" defaultColor="#4059a9" layoutX="446.0" layoutY="221.0" overLay="true" prefHeight="50.0" prefWidth="300.0" promptText="Select Date">
                      <cursor>
@@ -111,13 +111,13 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <JFXComboBox fx:id="cmbSelectCourse" labelFloat="true" layoutX="69.0" layoutY="116.0" prefHeight="50.0" prefWidth="300.0" promptText="Select Course" unFocusColor="#757575" />
+                  <JFXComboBox fx:id="cmbSelectCoursePayment" labelFloat="true" layoutX="69.0" layoutY="116.0" prefHeight="50.0" prefWidth="300.0" promptText="Select Course" unFocusColor="#757575" />
                   <JFXComboBox fx:id="cmbDescription" labelFloat="true" layoutX="446.0" layoutY="116.0" prefHeight="50.0" prefWidth="300.0" promptText="Description" unFocusColor="#757575" />
                   <JFXComboBox fx:id="cmbPaymentMethod" labelFloat="true" layoutX="69.0" layoutY="221.0" prefHeight="50.0" prefWidth="300.0" promptText="Payment Method" unFocusColor="#757575" />
                   <JFXTextField fx:id="txtAmount" labelFloat="true" layoutX="69.0" layoutY="445.0" prefHeight="50.0" prefWidth="304.0" promptText="Amount" unFocusColor="#757575" />
                   <JFXTextField fx:id="txtNote" labelFloat="true" layoutX="443.0" layoutY="445.0" prefHeight="50.0" prefWidth="303.0" promptText="Note" unFocusColor="#757575" />
                   <Line endX="-155.0" endY="320.0" layoutX="1007.0" layoutY="211.0" startX="-155.0" startY="-96.0" />
-                  <ImageView  fitHeight="35.0" fitWidth="35.0" layoutX="711.0" layoutY="347.0" onMouseClicked="#fleSelectReceipt_OnMouseClicked">
+                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="711.0" layoutY="347.0" onMouseClicked="#fleSelectReceipt_OnMouseClicked">
                      <image>
                         <Image url="@assets/icons/folder-open.png" />
                      </image>
@@ -171,12 +171,24 @@
                   <DropShadow />
                </effect>
                <children>
-                  <JFXComboBox fx:id="cmbSelectCourse1" labelFloat="true" layoutX="243.0" layoutY="93.0" prefHeight="50.0" prefWidth="300.0" promptText="Select Course" unFocusColor="#757575" />
-                  <Label layoutX="154.0" layoutY="193.0" prefHeight="24.0" prefWidth="92.0" text="Course Code :" />
-                  <Label layoutX="509.0" layoutY="197.0" text="Batch No :" />
-                  <Label layoutX="154.0" layoutY="255.0" text="Course Fee (Rs.) :" />
-                  <Label layoutX="509.0" layoutY="255.0" text="Payment (Rs.) :" />
-                  <TableView layoutX="7.0" layoutY="311.0" prefHeight="157.0" prefWidth="771.0">
+                  <JFXComboBox fx:id="cmbSelectCoursePaymentDetails" labelFloat="true" layoutX="243.0" layoutY="93.0" prefHeight="50.0" prefWidth="300.0" promptText="Select Course" unFocusColor="#757575" />
+                  <Label layoutX="154.0" layoutY="193.0" prefHeight="24.0" prefWidth="108.0" text="Course Code :">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Label>
+                  <Label layoutX="509.0" layoutY="197.0" text="Batch No :">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Label>
+                  <Label layoutX="154.0" layoutY="255.0" text="Course Fee (Rs.) :">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Label>
+                  <Label layoutX="509.0" layoutY="255.0" text="Payment (Rs.) :">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Label>
+                  <TableView fx:id="tblPaymentDetails" layoutX="7.0" layoutY="311.0" prefHeight="157.0" prefWidth="771.0">
                     <columns>
                       <TableColumn prefWidth="114.0" text="Date" />
                       <TableColumn prefWidth="181.0" text="Payment Method" />
@@ -190,6 +202,10 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
+                  <Label fx:id="lblCourseCode" layoutX="316.0" layoutY="197.0" text="1" />
+                  <Label fx:id="lblCourseFee" layoutX="316.0" layoutY="255.0" text="1" />
+                  <Label fx:id="lblBatchNo" layoutX="642.0" layoutY="196.0" text="1" />
+                  <Label fx:id="lblPayment" layoutX="642.0" layoutY="255.0" text="1" />
                </children>
             </AnchorPane>
 

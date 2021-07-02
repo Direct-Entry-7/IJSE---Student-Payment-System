@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PaymentService {
 
@@ -17,16 +18,13 @@ public class PaymentService {
     static {
         Student student1 = new Student("9312938282v", "Rajitha", "rajitha@gmail.com", "0718284821", LocalDate.of(1995, 02, 10), "Male", "address1");
 
-        Payment payment1 = new Payment("ref1", "001", "description1", "paymentMethod1", LocalDate.of(2021, 07, 01), null, BigDecimal.valueOf(10000), "note1", student1);
-        Payment payment2 = new Payment("ref2", "001", "description2", "paymentMethod2", LocalDate.of(2021, 07, 01), null, BigDecimal.valueOf(20000), "note1", student1);
-        Payment payment3 = new Payment("ref3", "001", "description3", "paymentMethod3", LocalDate.of(2021, 07, 01), null, BigDecimal.valueOf(30000), "note1", student1);
-        Payment payment4 = new Payment("ref4", "001", "description4", "paymentMethod1", LocalDate.of(2021, 07, 01), null, BigDecimal.valueOf(40000), "note1", student1);
-        Payment payment5 = new Payment("ref5", "001", "description5", "paymentMethod2", LocalDate.of(2021, 07, 01), null, BigDecimal.valueOf(50000), "note1", student1);
+
+
+        Payment payment1 = new Payment("ref1", "001", "3", "9512938224v", "description1", "paymentMethod1", LocalDate.of(2021, 01, 01), null, BigDecimal.valueOf(10000), "note1");
+        Payment payment2 = new Payment("ref2", "001", "3", "9512938224v", "description2", "paymentMethod2", LocalDate.of(2021, 07, 01), null, BigDecimal.valueOf(20000), "note2");
         paymentDB.add(payment1);
         paymentDB.add(payment2);
-        paymentDB.add(payment3);
-        paymentDB.add(payment4);
-        paymentDB.add(payment5);
+
     }
 
     public PaymentService() {
@@ -69,6 +67,15 @@ public class PaymentService {
             if (payment.getRefNo().equals(refNo)) {
                 return payment;
             }
+        }
+        throw new NotFoundException();
+
+    }
+
+    public  List<Payment> findPayments(String studentNIC,String courseCode) throws NotFoundException {
+        List<Payment> filteredPayments = paymentDB.stream().filter(payment -> payment.getStudentNIC().equals(studentNIC)).filter(payment -> payment.getCourseCode().equals(courseCode)).collect(Collectors.toList());
+        if(filteredPayments.size() > 0){
+            return filteredPayments;
         }
         throw new NotFoundException();
 
