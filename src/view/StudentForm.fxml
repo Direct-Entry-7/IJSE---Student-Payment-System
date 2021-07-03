@@ -44,7 +44,7 @@
         <JFXTextField fx:id="txtMobileNumber" labelFloat="true" layoutX="69.0" layoutY="281.0" prefHeight="50.0" prefWidth="400.0" promptText="Mobile No" unFocusColor="#757575" />
         <JFXTextField fx:id="txtNIC" labelFloat="true" layoutX="69.0" layoutY="191.0" prefHeight="50.0" prefWidth="400.0" promptText="NIC" unFocusColor="#757575" />
 <!--        <JFXTextField fx:id="txtDOB" labelFloat="true" layoutX="526.0" layoutY="281.0" prefHeight="50.0" prefWidth="400.0" promptText="DOB" unFocusColor="#757575" />-->
-        <JFXDatePicker fx:id="txtDOB" defaultColor="#4059a9" layoutX="526.0" layoutY="281.0" prefHeight="50.0" prefWidth="400.0" promptText="Date of Birth">
+        <JFXDatePicker fx:id="txtDOB" defaultColor="#4059a9" editable="false" layoutX="526.0" layoutY="281.0" prefHeight="50.0" prefWidth="400.0" promptText="Date of Birth">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></JFXDatePicker>

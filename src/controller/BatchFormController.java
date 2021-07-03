@@ -153,8 +153,6 @@ public class BatchFormController {
             return;
         }
 
-        System.out.println("Working");
-
         String courseCode = cmbCourse.getSelectionModel().getSelectedItem().toString();
         String batchNo = txtBatchNo.getText();
         LocalDate commenceDate = LocalDate.parse(dtCommenceDate.getValue().toString());

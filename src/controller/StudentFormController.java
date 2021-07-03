@@ -106,6 +106,9 @@ public class StudentFormController {
     }
 
     public void btnSave_OnAction(ActionEvent actionEvent) {
+        if (!isValidated()) {
+            return;
+        }
         String nic = txtNIC.getText();
         String name = txtName.getText();
         String email = txtEmail.getText();
@@ -151,5 +154,40 @@ public class StudentFormController {
         txtDOB.setValue(null);
         txtAddress.clear();
         btnSave.setText("Save");
+    }
+
+    private boolean isValidated() {
+
+        if(!(txtNIC.getText().matches("(^\\d{9}[vV])|(^\\d{11}[vV])"))){
+            new Alert(Alert.AlertType.ERROR, "Invalid NIC number").show();
+            txtNIC.requestFocus();
+            return false;
+        } else if(!(txtName.getText().matches("[A-Za-z\\s]{3,}"))){
+            new Alert(Alert.AlertType.ERROR, "Invalid Name. Name should contain at least 3 characters and cannot include numbers").show();
+            txtName.requestFocus();
+            return false;
+        }else if(!(txtEmail.getText().matches("[A-Za-z\\s]{3,}"))){
+            new Alert(Alert.AlertType.ERROR, "Invalid Email. Enter valid email address").show();
+            txtEmail.requestFocus();
+            return false;
+        }else if(!(txtMobileNumber.getText().matches("\\d{10}"))){
+            new Alert(Alert.AlertType.ERROR, "Invalid Mobile number. Enter valid mobile number").show();
+            txtEmail.requestFocus();
+            return false;
+        }
+        try{
+            LocalDate date = LocalDate.parse(txtDOB.getValue().toString());
+        }catch (Exception e){
+            new Alert(Alert.AlertType.ERROR, "Select Date of birth").show();
+            txtDOB.requestFocus();
+            return false;
+        }
+
+        if(!(txtAddress.getText().matches("\\b[^!@#$%*+=-]{5,}"))){
+            new Alert(Alert.AlertType.ERROR, "Invalid address. Enter valid address").show();
+            txtEmail.requestFocus();
+            return false;
+        }
+        return true;
     }
 }
