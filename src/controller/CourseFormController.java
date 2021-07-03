@@ -164,7 +164,7 @@ public class CourseFormController {
         try{
             BigDecimal courseFee = BigDecimal.valueOf(Integer.valueOf(txtCourseFee.getText()));
         }catch (NumberFormatException e){
-            new Alert(Alert.AlertType.ERROR, "Enter Valid Number").show();
+            new Alert(Alert.AlertType.ERROR, "Enter Valid Amount").show();
             txtCourseFee.requestFocus();
             return false;
         }

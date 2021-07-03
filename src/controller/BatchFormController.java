@@ -4,7 +4,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -119,7 +118,6 @@ public class BatchFormController {
             btnDelete.setOnAction(event -> {
                 Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure want to delete this batch?", ButtonType.YES, ButtonType.NO).showAndWait();
                 if (buttonType.get() == ButtonType.YES) {
-                    System.out.println("Called");
                     try {
                         batchService.deleteBatch(batch.getBatchNo());
                         tblBatches.getItems().remove(batchTM);
@@ -151,6 +149,12 @@ public class BatchFormController {
     }
 
     public void btnSave_OnAction(ActionEvent actionEvent) {
+        if (!isValidated()) {
+            return;
+        }
+
+        System.out.println("Working");
+
         String courseCode = cmbCourse.getSelectionModel().getSelectedItem().toString();
         String batchNo = txtBatchNo.getText();
         LocalDate commenceDate = LocalDate.parse(dtCommenceDate.getValue().toString());
@@ -158,7 +162,7 @@ public class BatchFormController {
         BigDecimal courseFee = BigDecimal.valueOf(Integer.valueOf(txtCourseFee.getText()));
         String description = txtDescription.getText();
 
-        Batch batch = new Batch(courseCode, batchNo, commenceDate, completedDate, description, courseFee,null);
+        Batch batch = new Batch(courseCode, batchNo, commenceDate, completedDate, description, courseFee, null);
 
         if (btnSave.getText().equals("Save")) {
             try {
@@ -166,15 +170,15 @@ public class BatchFormController {
                 new Alert(Alert.AlertType.CONFIRMATION, "Batch Added Successfully", ButtonType.OK).show();
                 btnAddNewBatch_OnAction(new ActionEvent());
             } catch (DuplicateEntryException e) {
-                e.printStackTrace();
+                new Alert(Alert.AlertType.ERROR, "Batch save failed! Try Again", ButtonType.OK).show();
             }
         } else {
             try {
                 batchService.updateBatch(batch);
-                new Alert(Alert.AlertType.CONFIRMATION, "Student Updated Successfully", ButtonType.OK).show();
+                new Alert(Alert.AlertType.CONFIRMATION, "Batch updated Successfully!", ButtonType.OK).show();
                 btnAddNewBatch_OnAction(new ActionEvent());
             } catch (NotFoundException e) {
-                e.printStackTrace();
+                new Alert(Alert.AlertType.CONFIRMATION, "Batch update failed! Try Again", ButtonType.OK).show();
             }
         }
         loadBatches();
@@ -192,5 +196,53 @@ public class BatchFormController {
         txtCourseFee.clear();
         txtDescription.clear();
         btnSave.setText("Save");
+    }
+
+    private boolean isValidated() {
+        try {
+            String courseCode = cmbCourse.getSelectionModel().getSelectedItem().toString();
+        } catch (NullPointerException e) {
+            new Alert(Alert.AlertType.ERROR, "Course should be selected").show();
+            cmbCourse.requestFocus();
+            return false;
+        }
+
+        if (!(txtBatchNo.getText().matches("\\d{1,}"))) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Batch No").show();
+            txtBatchNo.requestFocus();
+            return false;
+        }
+
+        try {
+            LocalDate commenceDate = LocalDate.parse(dtCommenceDate.getValue().toString());
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Commence Date. Please select the date").show();
+            dtCommenceDate.requestFocus();
+            return false;
+        }
+
+        try {
+            LocalDate completedDate = LocalDate.parse(dtCompletedDate.getValue().toString());
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Completed Date. Please select the date").show();
+            dtCompletedDate.requestFocus();
+            return false;
+        }
+
+        try {
+            BigDecimal courseFee = BigDecimal.valueOf(Integer.valueOf(txtCourseFee.getText()));
+        } catch (NumberFormatException e) {
+            new Alert(Alert.AlertType.ERROR, "Enter Valid Amount").show();
+            txtCourseFee.requestFocus();
+            return false;
+        }
+
+        if (!(txtDescription.getText().matches("[A-Za-z0-9\\s]{3,}"))) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Description.Minimum length is 3 and can only include numbers and characters").show();
+            txtDescription.requestFocus();
+            return false;
+        }
+
+        return true;
     }
 }

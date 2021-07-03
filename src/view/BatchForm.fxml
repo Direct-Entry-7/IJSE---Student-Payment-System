@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="825.0" prefWidth="1450.0" style="-fx-background-color: white;" stylesheets="@css/BatchFormStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BatchFormController">
+<AnchorPane fx:id="pneBatch" prefHeight="825.0" prefWidth="1450.0" style="-fx-background-color: white;" stylesheets="@css/BatchFormStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BatchFormController">
 
     <children>
         <Line endX="1347.878662109375" endY="1.52587890625E-5" layoutX="102.0" layoutY="102.0" startX="-100.0" stroke="#bdbdbd" strokeWidth="3.0" AnchorPane.leftAnchor="-0.1213226318359375" AnchorPane.rightAnchor="0.1213226318359375" />
@@ -41,16 +41,17 @@
         </TableView>
         <JFXComboBox fx:id="cmbCourse" labelFloat="true" layoutX="69.0" layoutY="206.0" prefHeight="50.0" prefWidth="300.0" promptText="Select Course" />
         <JFXTextField fx:id="txtBatchNo" labelFloat="true" layoutX="457.0" layoutY="206.0" prefHeight="50.0" prefWidth="200.0" promptText="Batch No" unFocusColor="#757575" />
-        <JFXDatePicker fx:id="dtCommenceDate" defaultColor="#4059a9" layoutX="726.0" layoutY="206.0" prefHeight="50.0" prefWidth="300.0" promptText="Commence Date">
+        <JFXDatePicker fx:id="dtCommenceDate" defaultColor="#4059a9" editable="false" layoutX="726.0" layoutY="206.0" prefHeight="50.0" prefWidth="300.0" promptText="Commence Date">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></JFXDatePicker>
-        <JFXDatePicker fx:id="dtCompletedDate" defaultColor="#4059a9" layoutX="1082.0" layoutY="206.0" overLay="true" prefHeight="50.0" prefWidth="300.0" promptText="Completed Date">
+      <JFXDatePicker fx:id="dtCompletedDate" defaultColor="#4059a9" editable="false" layoutX="1082.0" layoutY="206.0" prefHeight="50.0" prefWidth="300.0" promptText="Completed Date">
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor></JFXDatePicker>
+         </cursor>
+      </JFXDatePicker>
         <JFXTextField fx:id="txtDescription" labelFloat="true" layoutX="461.0" layoutY="316.0" prefHeight="50.0" prefWidth="753.0" promptText="Description" unFocusColor="#757575" />
-        <JFXButton fx:id="btnSave" defaultButton="true" layoutX="1271.0" layoutY="312.0" onAction="#btnSave_OnAction" opacity="0.7" prefHeight="54.0" prefWidth="111.0" ripplerFill="#9a8484" style="-fx-background-color: black;" text="Add Batch" textFill="WHITE">
+        <JFXButton fx:id="btnSave" defaultButton="true" layoutX="1271.0" layoutY="312.0" onAction="#btnSave_OnAction" opacity="0.7" prefHeight="54.0" prefWidth="111.0" ripplerFill="#9a8484" style="-fx-background-color: black;" text="Save" textFill="WHITE">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
