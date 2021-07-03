@@ -3,11 +3,12 @@ package model;
 import javafx.scene.control.Button;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 public class CourseTM implements Serializable {
     private String courseCode;
     private String name;
-    private Double courseFee;
+    private BigDecimal courseFee;
     private String duration;
     private String description;
     private Button btn;
@@ -15,7 +16,7 @@ public class CourseTM implements Serializable {
     public CourseTM() {
     }
 
-    public CourseTM(String courseCode, String name, Double courseFee, String duration, String description, Button btn) {
+    public CourseTM(String courseCode, String name, BigDecimal courseFee, String duration, String description, Button btn) {
         this.courseCode = courseCode;
         this.name = name;
         this.courseFee = courseFee;
@@ -40,11 +41,11 @@ public class CourseTM implements Serializable {
         this.name = name;
     }
 
-    public Double getCourseFee() {
+    public BigDecimal getCourseFee() {
         return courseFee;
     }
 
-    public void setCourseFee(Double courseFee) {
+    public void setCourseFee(BigDecimal courseFee) {
         this.courseFee = courseFee;
     }
 

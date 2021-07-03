@@ -19,6 +19,7 @@ import service.CourseService;
 import service.exception.DuplicateEntryException;
 import service.exception.NotFoundException;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -99,7 +100,7 @@ public class CourseFormController {
     public void btnSaveCourse_OnAction(ActionEvent actionEvent) {
         String courseCode = txtCourseCode.getText();
         String name = txtName.getText();
-        Double courseFee = Double.parseDouble(txtCourseFee.getText());
+        BigDecimal courseFee = BigDecimal.valueOf(Integer.valueOf(txtCourseFee.getText()));
         String duration = txtDuration.getText();
         String description = txtDescription.getText();
         Course course = new Course(courseCode, name, courseFee, duration, description);

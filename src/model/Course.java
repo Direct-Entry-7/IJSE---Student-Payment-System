@@ -1,11 +1,12 @@
 package model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 public class Course implements Serializable {
     private String courseCode;
     private String name;
-    private Double courseFee;
+    private BigDecimal courseFee;
     private String duration;
     private String description;
 
@@ -13,7 +14,7 @@ public class Course implements Serializable {
 
     }
 
-    public Course(String courseCode, String name, Double courseFee, String duration, String description) {
+    public Course(String courseCode, String name, BigDecimal courseFee, String duration, String description) {
         this.courseCode = courseCode;
         this.name = name;
         this.courseFee = courseFee;
@@ -37,11 +38,11 @@ public class Course implements Serializable {
         this.name = name;
     }
 
-    public Double getCourseFee() {
+    public BigDecimal getCourseFee() {
         return courseFee;
     }
 
-    public void setCourseFee(Double courseFee) {
+    public void setCourseFee(BigDecimal courseFee) {
         this.courseFee = courseFee;
     }
 

@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane prefHeight="1400.0" prefWidth="1450.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddNewPaymentFormController">
+<ScrollPane prefHeight="825.0" prefWidth="1450.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddNewPaymentFormController">
    <content>
       <AnchorPane prefHeight="1500.0" prefWidth="1450.0" style="-fx-background-color: white;">
           <children>
@@ -101,18 +101,13 @@
                <children>
                   <JFXTextField accessibleRole="BUTTON" editable="false" labelFloat="true" layoutX="443.0" layoutY="339.0" prefHeight="50.0" prefWidth="303.0" promptText="Select Receipt" unFocusColor="#757575" />
                   <JFXTextField fx:id="txtRefNo" labelFloat="true" layoutX="69.0" layoutY="339.0" prefHeight="50.0" prefWidth="303.0" promptText="Ref No" unFocusColor="#757575" />
-                  <JFXDatePicker fx:id="dtSelectDate" defaultColor="#4059a9" layoutX="446.0" layoutY="221.0" overLay="true" prefHeight="50.0" prefWidth="300.0" promptText="Select Date">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </JFXDatePicker>
                   <Label layoutX="588.0" layoutY="25.0" text="Payment">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
                   <JFXComboBox fx:id="cmbSelectCoursePayment" labelFloat="true" layoutX="69.0" layoutY="116.0" prefHeight="50.0" prefWidth="300.0" promptText="Select Course" unFocusColor="#757575" />
-                  <JFXComboBox fx:id="cmbDescription" labelFloat="true" layoutX="446.0" layoutY="116.0" prefHeight="50.0" prefWidth="300.0" promptText="Description" unFocusColor="#757575" />
+                  <JFXComboBox fx:id="cmbDescription" editable="true" labelFloat="true" layoutX="446.0" layoutY="116.0" prefHeight="50.0" prefWidth="300.0" promptText="Description" unFocusColor="#757575" />
                   <JFXComboBox fx:id="cmbPaymentMethod" labelFloat="true" layoutX="69.0" layoutY="221.0" prefHeight="50.0" prefWidth="300.0" promptText="Payment Method" unFocusColor="#757575" />
                   <JFXTextField fx:id="txtAmount" labelFloat="true" layoutX="69.0" layoutY="445.0" prefHeight="50.0" prefWidth="304.0" promptText="Amount" unFocusColor="#757575" />
                   <JFXTextField fx:id="txtNote" labelFloat="true" layoutX="443.0" layoutY="445.0" prefHeight="50.0" prefWidth="303.0" promptText="Note" unFocusColor="#757575" />
@@ -163,6 +158,10 @@
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
+                  <JFXDatePicker fx:id="dtSelectDate" defaultColor="#4059a9" layoutX="446.0" layoutY="241.0" prefWidth="298.0" promptText="Select Date" />
+                  <Label fx:id="lblBatchFee" layoutX="1081.0" layoutY="197.0" />
+                  <Label fx:id="lblCurrentPayment" layoutX="1081.0" layoutY="246.0" />
+                  <Label fx:id="lblBalance" layoutX="1081.0" layoutY="323.0" />
                    
                </children>
             </AnchorPane>
@@ -202,10 +201,10 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblCourseCode" layoutX="316.0" layoutY="197.0" text="1" />
-                  <Label fx:id="lblCourseFee" layoutX="316.0" layoutY="255.0" text="1" />
-                  <Label fx:id="lblBatchNo" layoutX="642.0" layoutY="196.0" text="1" />
-                  <Label fx:id="lblPayment" layoutX="642.0" layoutY="255.0" text="1" />
+                  <Label fx:id="lblCourseCode" layoutX="316.0" layoutY="197.0" />
+                  <Label fx:id="lblCourseFee" layoutX="316.0" layoutY="255.0" />
+                  <Label fx:id="lblBatchNo" layoutX="642.0" layoutY="196.0" />
+                  <Label fx:id="lblPayment" layoutX="642.0" layoutY="255.0" />
                </children>
             </AnchorPane>
 

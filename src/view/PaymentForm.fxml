@@ -26,15 +26,18 @@
                   <Font size="36.0" />
               </font>
           </Label>
-          <TableView id="tbl-payment" layoutX="69.0" layoutY="314.0" prefHeight="478.0" prefWidth="1313.0" AnchorPane.leftAnchor="69.0" AnchorPane.rightAnchor="70.0">
+          <TableView id="tbl-payment" fx:id="tblPayment" layoutX="69.0" layoutY="314.0" prefHeight="478.0" prefWidth="1313.0" AnchorPane.leftAnchor="69.0" AnchorPane.rightAnchor="70.0">
               <columns>
-                  <TableColumn prefWidth="149.0" text="Date" />
-                  <TableColumn prefWidth="207.00001525878906" text="Student Name" />
-                  <TableColumn prefWidth="183.0" text="Course " />
-                  <TableColumn prefWidth="197.0" text="Batch" />
-                  <TableColumn prefWidth="196.0" text="Payment Method" />
-                  <TableColumn prefWidth="162.0" text="Description" />
-                  <TableColumn prefWidth="218.121337890625" text="Payment (Rs.)" />
+            <TableColumn prefWidth="137.99996948242188" text="Ref No" />
+                  <TableColumn prefWidth="137.99996948242188" text="Date" />
+                  <TableColumn prefWidth="186.00001525878906" text="Student NIC" />
+                  <TableColumn prefWidth="174.0" text="Course " />
+                  <TableColumn prefWidth="147.0" text="Batch" />
+                  <TableColumn prefWidth="174.0" text="Payment Method" />
+                  <TableColumn prefWidth="214.0" text="Description" />
+                  <TableColumn prefWidth="156.0" text="Payment (Rs.)" />
+            <TableColumn prefWidth="122.121337890625" text="Reciept" />
+            <TableColumn prefWidth="122.121337890625" text="Operation" />
               </columns>
           </TableView>
           <JFXButton fx:id="btnAddNewPayment" defaultButton="true" layoutX="1246.0" layoutY="121.0" onAction="#btnAddNewPayment_OnAction" opacity="0.7" prefHeight="54.0" prefWidth="132.0" ripplerFill="#9a8484" style="-fx-background-color: black;" text="+ New Payment" textFill="WHITE">
@@ -42,7 +45,7 @@
                   <Cursor fx:constant="HAND" />
               </cursor>
           </JFXButton>
-          <JFXTextField labelFloat="true" layoutX="69.0" layoutY="227.0" prefHeight="50.0" prefWidth="491.0" promptText="Query" unFocusColor="#757575" />
+          <JFXTextField fx:id="txtQuery" labelFloat="true" layoutX="69.0" layoutY="227.0" prefHeight="50.0" prefWidth="491.0" promptText="Query" unFocusColor="#757575" />
 
       </children>
   </AnchorPane>

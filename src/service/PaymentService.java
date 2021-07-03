@@ -17,9 +17,6 @@ public class PaymentService {
 
     static {
         Student student1 = new Student("9312938282v", "Rajitha", "rajitha@gmail.com", "0718284821", LocalDate.of(1995, 02, 10), "Male", "address1");
-
-
-
         Payment payment1 = new Payment("ref1", "001", "3", "9512938224v", "description1", "paymentMethod1", LocalDate.of(2021, 01, 01), null, BigDecimal.valueOf(10000), "note1");
         Payment payment2 = new Payment("ref2", "001", "3", "9512938224v", "description2", "paymentMethod2", LocalDate.of(2021, 07, 01), null, BigDecimal.valueOf(20000), "note2");
         paymentDB.add(payment1);
@@ -57,9 +54,9 @@ public class PaymentService {
         paymentDB.remove(payment);
     }
 
-    public List<Payment> getAllPayments() {
-        return paymentDB;
-    }
+//    public List<Payment> getAllPayments() {
+//        return paymentDB;
+//    }
 
     public Payment findPayment(String refNo) throws NotFoundException {
         for (Payment payment : paymentDB) {
@@ -79,5 +76,25 @@ public class PaymentService {
         }
         throw new NotFoundException();
 
+    }
+
+    public List<Payment> getAllPayments(String query) {
+        List<Payment> result = new ArrayList<>();
+
+        for (Payment payment : paymentDB) {
+            if(payment.getRefNo().contains(query)
+                    ||payment.getStudentNIC().contains(query)
+                    ||payment.getCourseCode().contains(query)
+                    ||payment.getBatchNo().contains(query)
+                    ||payment.getDescription().contains(query)
+                    ||payment.getPaymentMethod().contains(query)
+                    ||payment.getAmount().toString().contains(query)
+                    ||payment.getDate().toString().contains(query)
+                    ||payment.getNote().contains(query)
+            ){
+                result.add(payment);
+            }
+        }
+        return result;
     }
 }

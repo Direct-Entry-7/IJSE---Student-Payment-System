@@ -18,12 +18,12 @@ public class PaymentDetailsTM implements Serializable {
     private File file;
     private BigDecimal payment;
     private String note;
-    private Button del0ete;
+    private Button deleteButton;
 
     public PaymentDetailsTM() {
     }
 
-    public PaymentDetailsTM(String refNo, String courseCode, String batchNo, String studentNIC, String description, String paymentMethod, LocalDate date, File file, BigDecimal payment, String note, Button del0ete) {
+    public PaymentDetailsTM(String refNo, String courseCode, String batchNo, String studentNIC, String description, String paymentMethod, LocalDate date, File file, BigDecimal payment, String note, Button deleteButton) {
         this.refNo = refNo;
         this.courseCode = courseCode;
         this.batchNo = batchNo;
@@ -34,7 +34,7 @@ public class PaymentDetailsTM implements Serializable {
         this.file = file;
         this.payment = payment;
         this.note = note;
-        this.del0ete = del0ete;
+        this.deleteButton = deleteButton;
     }
 
     public String getRefNo() {
@@ -117,11 +117,11 @@ public class PaymentDetailsTM implements Serializable {
         this.note = note;
     }
 
-    public Button getDel0ete() {
-        return del0ete;
+    public Button getDeleteButton() {
+        return deleteButton;
     }
 
-    public void setDel0ete(Button del0ete) {
-        this.del0ete = del0ete;
+    public void setDeleteButton(Button deleteButton) {
+        this.deleteButton = deleteButton;
     }
 }

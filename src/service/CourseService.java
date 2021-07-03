@@ -4,6 +4,7 @@ import model.Course;
 import service.exception.DuplicateEntryException;
 import service.exception.NotFoundException;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,11 +13,11 @@ public class CourseService {
     private static final List<Course> coursesDB = new ArrayList<>();
 
     static {
-        Course course1 = new Course("001", "AAA", 10000.0, "6", "Description1");
-        Course course2 = new Course("002", "BBB", 20000.0, "7", "Description2");
-        Course course3 = new Course("003", "CCC", 30000.0, "8", "Description3");
-        Course course4 = new Course("004", "DDD", 40000.0, "9", "Description4");
-        Course course5 = new Course("005", "EEE", 50000.0, "10", "Description5");
+        Course course1 = new Course("001", "AAA", BigDecimal.valueOf(10000), "6", "Description1");
+        Course course2 = new Course("002", "BBB",  BigDecimal.valueOf(20000), "7", "Description2");
+        Course course3 = new Course("003", "CCC", BigDecimal.valueOf(30000), "8", "Description3");
+        Course course4 = new Course("004", "DDD",  BigDecimal.valueOf(40000), "9", "Description4");
+        Course course5 = new Course("005", "EEE", BigDecimal.valueOf(50000), "10", "Description5");
 
         coursesDB.add(course1);
         coursesDB.add(course2);

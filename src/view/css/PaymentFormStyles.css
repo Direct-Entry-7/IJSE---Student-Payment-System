@@ -69,3 +69,12 @@
     -fx-cursor: hand;
     -fx-text-fill: white;
 }
+
+HBox{
+    -fx-alignment: center;
+
+}
+
+.action-icons:hover{
+    -fx-cursor: hand;
+}

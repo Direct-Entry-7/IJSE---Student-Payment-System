@@ -181,7 +181,7 @@
                               <Insets left="20.0" top="20.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Label prefHeight="44.0" prefWidth="181.0" text="User" textFill="WHITE">
+                        <Label prefHeight="44.0" prefWidth="181.0" text="Users" textFill="WHITE">
                            <font>
                               <Font size="36.0" />
                            </font>

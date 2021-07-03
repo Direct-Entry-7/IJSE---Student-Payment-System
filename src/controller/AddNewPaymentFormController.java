@@ -14,8 +14,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 import model.*;
+import service.BatchService;
 import service.PaymentService;
 import service.StudentService;
+import service.exception.DuplicateEntryException;
 import service.exception.NotFoundException;
 
 import java.io.File;
@@ -47,10 +49,14 @@ public class AddNewPaymentFormController {
     public Label lblCourseFee;
     public Label lblBatchNo;
     public Label lblPayment;
+    public Label lblBatchFee;
+    public Label lblCurrentPayment;
+    public Label lblBalance;
     private Student student;
     private StudentService studentService = new StudentService();
     private PaymentService paymentService = new PaymentService();
-    private ObservableList<PaymentDetailsTM> batchesList = FXCollections.observableArrayList();
+    private BatchService batchService = new BatchService();
+    private ObservableList<PaymentDetailsTM> paymentList = FXCollections.observableArrayList();
 
     public void initialize(){
         txtSearchByNIC.setText("9512938224v");
@@ -65,22 +71,76 @@ public class AddNewPaymentFormController {
                     System.out.println(newValue);
                     loadPaymentDetails(newValue.toString());
                 });
+
+        cmbSelectCoursePayment.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    System.out.println(newValue);
+                    List<Payment> payments = null;
+                    try {
+                        payments = paymentService.findPayments(student.getNic(), newValue.toString());
+                        Batch batch = batchService.findBatch(student.getCourseWithBatch().get(newValue.toString()));
+                        BigDecimal courseFee = batch.getCourseFee();
+
+                        BigDecimal amount = BigDecimal.ZERO;
+                        for (Payment payment:payments) {
+                            amount = amount.add(payment.getAmount());
+                            lblBatchFee.setText(batch.getCourseFee().toString());
+                            lblCurrentPayment.setText(amount.toString());
+                            lblBalance.setText(courseFee.subtract(amount).toString());
+                        }
+                    } catch (NotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+                });
+
+
+
+
+
+
+
+
+        ObservableList<String> description = cmbDescription.getItems();
+        description.add("Registration Fee");
+        description.add("Installment");
+        description.add("Full Payment");
+
+        ObservableList<String> paymentMethods = cmbPaymentMethod.getItems();
+        paymentMethods.add("Online Payment");
+        paymentMethods.add("Bank Transfer");
+        paymentMethods.add("Handover");
+
+
+
     }
 
     private void loadPaymentDetails(String courseCode) {
-        batchesList.clear();
+        lblCourseCode.setText("");
+        lblBatchNo.setText("");
+        lblPayment.setText("");
+        lblCourseFee.setText("");
+        paymentList.clear();
         try {
+            Batch batch = batchService.findBatch(student.getCourseWithBatch().get(courseCode));
+            lblCourseCode.setText(courseCode);
+            lblBatchNo.setText(batch.getBatchNo());
+            lblPayment.setText("0");
+            lblCourseFee.setText(batch.getCourseFee().toString());
+            tblPaymentDetails.setItems(paymentList);
+
             List<Payment> payments = paymentService.findPayments(student.getNic(), courseCode);
+
+
             BigDecimal amount = BigDecimal.ZERO;
             for (Payment payment:payments) {
                 amount = amount.add(payment.getAmount());
                 PaymentDetailsTM pdTM = new PaymentDetailsTM(payment.getRefNo(), payment.getCourseCode(), payment.getBatchNo(), payment.getStudentNIC(), payment.getDescription(), payment.getPaymentMethod(), payment.getDate(), payment.getFile(), payment.getAmount(), payment.getNote(), new Button("Delete"));
-                batchesList.add(pdTM);
-                lblCourseCode.setText(courseCode);
-                lblBatchNo.setText(payment.getBatchNo());
+                paymentList.add(pdTM);
+
                 lblPayment.setText(amount.toString());
             }
-            tblPaymentDetails.setItems(batchesList);
+
 
         } catch (NotFoundException e) {
             e.printStackTrace();
@@ -99,6 +159,12 @@ public class AddNewPaymentFormController {
 
     public void btnSearchStudent_OnAction(ActionEvent actionEvent) {
         String nic = txtSearchByNIC.getText();
+        ObservableList<String> paymentDetails = cmbSelectCoursePaymentDetails.getItems();
+        ObservableList<String> payment = cmbSelectCoursePayment.getItems();
+
+        paymentDetails.clear();
+        payment.clear();
+        paymentList.clear();
 
         try {
             student = studentService.findStudent(nic);
@@ -109,8 +175,6 @@ public class AddNewPaymentFormController {
             lblAddress.setText(student.getAddress());
 
             Map<String, String> courseWithBatch = student.getCourseWithBatch();
-            ObservableList<String> paymentDetails = cmbSelectCoursePaymentDetails.getItems();
-            ObservableList<String> payment = cmbSelectCoursePayment.getItems();
 
             for (String course:courseWithBatch.keySet()) {
                paymentDetails.add(course);
@@ -123,13 +187,24 @@ public class AddNewPaymentFormController {
     }
 
     public void btnPay_OnAction(ActionEvent actionEvent) {
-        String courseCode = cmbSelectCourse.getSelectionModel().getSelectedItem().toString();
-        String description = cmbDescription.getSelectionModel().getSelectedItem().toString();
-        String paymentMethod = cmbPaymentMethod.getSelectionModel().getSelectedItem().toString();
-        LocalDate selectedDate = LocalDate.parse(dtSelectDate.getValue().toString());
-        BigDecimal amount = BigDecimal.valueOf(Integer.valueOf(txtAmount.getText()));
-        String refNo = txtRefNo.getText();        
-        String note = txtNote.getText();
+        try {
+            String courseCode = cmbSelectCoursePayment.getSelectionModel().getSelectedItem().toString();
+            String description = cmbDescription.getSelectionModel().getSelectedItem().toString();
+            String paymentMethod = cmbPaymentMethod.getSelectionModel().getSelectedItem().toString();
+            LocalDate selectedDate = LocalDate.parse(dtSelectDate.getValue().toString());
+            BigDecimal amount = BigDecimal.valueOf(Integer.valueOf(txtAmount.getText()));
+            String refNo = txtRefNo.getText();
+            String note = txtNote.getText();
+            Batch batch = batchService.findBatch(student.getCourseWithBatch().get(courseCode));
+
+            Payment payment = new Payment(refNo, courseCode, batch.getBatchNo(), student.getNic(), description, paymentMethod, selectedDate, null, amount, note);
+            paymentService.savePayment(payment);
+        } catch (NotFoundException | DuplicateEntryException e) {
+            e.printStackTrace();
+        }
+
+
+
 
 
     }
