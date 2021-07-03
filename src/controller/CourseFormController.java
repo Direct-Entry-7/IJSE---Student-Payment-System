@@ -2,6 +2,7 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.RequiredFieldValidator;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +14,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Paint;
 import model.Course;
 import model.CourseTM;
 import service.CourseService;
@@ -74,7 +76,6 @@ public class CourseFormController {
         coursesList.clear();
 
         for (Course course: courseService.getAllCourses()) {
-//            Button btnDelete = new Button("Delete");
             JFXButton btnDelete = new JFXButton("Delete");
             btnDelete.getStyleClass().add("delete-button");
 
@@ -98,30 +99,31 @@ public class CourseFormController {
     }
 
     public void btnSaveCourse_OnAction(ActionEvent actionEvent) {
-        String courseCode = txtCourseCode.getText();
-        String name = txtName.getText();
-        BigDecimal courseFee = BigDecimal.valueOf(Integer.valueOf(txtCourseFee.getText()));
-        String duration = txtDuration.getText();
-        String description = txtDescription.getText();
-        Course course = new Course(courseCode, name, courseFee, duration, description);
+        if (!isValidated()) {
+            return;
+        }
+
+        Course course = new Course(txtCourseCode.getText(), txtName.getText(), BigDecimal.valueOf(Integer.valueOf(txtCourseFee.getText())), txtDuration.getText(), txtDescription.getText());
 
 
         if(btnSaveCourse.getText().equals("Save")){
             try {
                 courseService.saveCourse(course);
+                new Alert(Alert.AlertType.CONFIRMATION,"Course Added Successfully", ButtonType.OK).show();
             } catch (DuplicateEntryException e) {
-                e.printStackTrace();
+                new Alert(Alert.AlertType.ERROR,"Course code exists. Add different course code", ButtonType.OK).show();
             }
         } else{
             try {
                 courseService.updateCourse(course);
+                new Alert(Alert.AlertType.CONFIRMATION,"Course Updated Successfully", ButtonType.OK).show();
             } catch (NotFoundException e) {
-                e.printStackTrace();
+                new Alert(Alert.AlertType.ERROR,"Not found a course with given course code", ButtonType.OK).show();
             }
         }
 
 
-        new Alert(Alert.AlertType.CONFIRMATION,"Course Added Successfully", ButtonType.OK).show();
+
 
         loadCourses();
     }
@@ -134,4 +136,41 @@ public class CourseFormController {
         txtDuration.clear();
         txtDescription.clear();
     }
+
+    private boolean isValidated() {
+        String courseCode = txtCourseCode.getText();
+        String name = txtName.getText();
+        String duration = txtDuration.getText();
+        String description = txtDescription.getText();
+
+        if(!(courseCode.matches("[A-Za-z0-9]{2,}"))){
+            new Alert(Alert.AlertType.ERROR, "Invalid Course Code").show();
+            txtCourseCode.requestFocus();
+            return false;
+        } else if(!(name.matches("[A-Za-z0-9\\s]{2,}"))){
+            new Alert(Alert.AlertType.ERROR, "Invalid Name. Name should contain at least 3 characters and cannot include numbers").show();
+            txtName.requestFocus();
+            return false;
+        } else if(!(duration.matches("[A-Za-z0-9\\s]{2,}"))){
+            new Alert(Alert.AlertType.ERROR, "Invalid duration.Minimum length is 3 and can only include numbers and characters").show();
+            txtDuration.requestFocus();
+            return false;
+        }else if(!(description.matches("[A-Za-z0-9\\s]{2,}"))){
+            new Alert(Alert.AlertType.ERROR, "Invalid description.Minimum length is 3 and can only include numbers and characters").show();
+            txtDescription.requestFocus();
+            return false;
+        }
+
+        try{
+            BigDecimal courseFee = BigDecimal.valueOf(Integer.valueOf(txtCourseFee.getText()));
+        }catch (NumberFormatException e){
+            new Alert(Alert.AlertType.ERROR, "Enter Valid Number").show();
+            txtCourseFee.requestFocus();
+            return false;
+        }
+
+        return true;
+    }
+
+
 }
