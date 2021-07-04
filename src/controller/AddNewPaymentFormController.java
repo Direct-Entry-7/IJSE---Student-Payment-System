@@ -59,7 +59,7 @@ public class AddNewPaymentFormController {
     private ObservableList<PaymentDetailsTM> paymentList = FXCollections.observableArrayList();
 
     public void initialize(){
-        txtSearchByNIC.setText("9512938224v");
+        txtSearchByNIC.setText("951293822v");
         tblPaymentDetails.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("date"));
         tblPaymentDetails.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("paymentMethod"));
         tblPaymentDetails.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -93,13 +93,6 @@ public class AddNewPaymentFormController {
                     }
 
                 });
-
-
-
-
-
-
-
 
         ObservableList<String> description = cmbDescription.getItems();
         description.add("Registration Fee");
@@ -166,6 +159,12 @@ public class AddNewPaymentFormController {
         payment.clear();
         paymentList.clear();
 
+        if(!(txtSearchByNIC.getText().matches("(^\\d{9}[vV])|(^\\d{11}[vV])"))){
+            new Alert(Alert.AlertType.ERROR, "Invalid NIC number").show();
+            txtSearchByNIC.requestFocus();
+            return;
+        }
+
         try {
             student = studentService.findStudent(nic);
             lblName.setText(student.getName());
@@ -182,6 +181,8 @@ public class AddNewPaymentFormController {
             }
         } catch (NotFoundException e) {
             new Alert(Alert.AlertType.ERROR, "Not found student with this NIC. Try again", ButtonType.OK).show();
+            txtSearchByNIC.requestFocus();
+            return;
         }
 
     }

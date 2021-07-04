@@ -15,8 +15,8 @@ public class BatchService {
     private static List<Student> students = new ArrayList<>();
 
     static {
-        Student student1 = new Student("9312938282v","Rajitha","rajitha@gmail.com","0718284821",LocalDate.of(1995,02,10),"Male","address1");
-        Student student2 = new Student("9512938224v","Pashan","pashan@yahoo.com","0778284111",LocalDate.of(1995,12,15),"Male","address2");
+        Student student1 = new Student("931293828v","Rajitha","rajitha@gmail.com","0718284821",LocalDate.of(1995,02,10),"Male","address1");
+        Student student2 = new Student("951293822v","Pashan","pashan@yahoo.com","0778284111",LocalDate.of(1995,12,15),"Male","address2");
         students.add(student1);
         students.add(student2);
         Batch batch1 = new Batch("001", "3", LocalDate.of(2019, 05, 21), LocalDate.of(2019, 11, 20), "Batch 03", BigDecimal.valueOf(75000),students);

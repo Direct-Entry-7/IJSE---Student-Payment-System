@@ -16,9 +16,8 @@ public class PaymentService {
     private static final List<Payment> paymentDB = new ArrayList<>();
 
     static {
-        Student student1 = new Student("9312938282v", "Rajitha", "rajitha@gmail.com", "0718284821", LocalDate.of(1995, 02, 10), "Male", "address1");
-        Payment payment1 = new Payment("ref1", "001", "3", "9512938224v", "description1", "paymentMethod1", LocalDate.of(2021, 01, 01), null, BigDecimal.valueOf(10000), "note1");
-        Payment payment2 = new Payment("ref2", "001", "3", "9512938224v", "description2", "paymentMethod2", LocalDate.of(2021, 07, 01), null, BigDecimal.valueOf(20000), "note2");
+        Payment payment1 = new Payment("ref1", "001", "3", "951293822v", "description1", "paymentMethod1", LocalDate.of(2021, 01, 01), null, BigDecimal.valueOf(10000), "note1");
+        Payment payment2 = new Payment("ref2", "001", "3", "951293822v", "description2", "paymentMethod2", LocalDate.of(2021, 07, 01), null, BigDecimal.valueOf(20000), "note2");
         paymentDB.add(payment1);
         paymentDB.add(payment2);
 

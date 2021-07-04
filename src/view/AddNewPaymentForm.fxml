@@ -158,7 +158,7 @@
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <JFXDatePicker fx:id="dtSelectDate" defaultColor="#4059a9" layoutX="446.0" layoutY="241.0" prefWidth="298.0" promptText="Select Date" />
+                  <JFXDatePicker fx:id="dtSelectDate" defaultColor="#4059a9" editable="false" layoutX="446.0" layoutY="241.0" prefWidth="298.0" promptText="Select Date" />
                   <Label fx:id="lblBatchFee" layoutX="1081.0" layoutY="197.0" />
                   <Label fx:id="lblCurrentPayment" layoutX="1081.0" layoutY="246.0" />
                   <Label fx:id="lblBalance" layoutX="1081.0" layoutY="323.0" />
