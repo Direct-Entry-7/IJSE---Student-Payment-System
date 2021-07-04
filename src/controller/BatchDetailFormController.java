@@ -33,13 +33,16 @@ public class BatchDetailFormController {
     public Label lblMobileNo;
     public Label lblEmail;
     public JFXTextField txtSearchByNIC;
+    public JFXButton btnAdd;
+    public JFXButton btnSearch;
     private Batch batch;
     private Student student;
+    private String courseCode;
     private BatchService batchService = new BatchService();
     ;
     private StudentService studentService = new StudentService();
 
-    private List<Student> batchStudents = new ArrayList<>();
+    private List<Student> batchStudents;
     private ObservableList<BatchDetailTM> studentsTableList = FXCollections.observableArrayList();
 
     public void initialize() {
@@ -52,18 +55,24 @@ public class BatchDetailFormController {
             tblStudents.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("btnDelete"));
 
             loadBatch((BatchTM) pneBatchDetails.getUserData());
-            txtSearchByNIC.setText("9512938224v");
+            txtSearchByNIC.setText("951293822v");
+
+            if(student ==null){
+                btnAdd.setDisable(true);
+            }
 
         });
     }
 
     private void loadBatch(BatchTM batchTM) {
         try {
+            courseCode = batchTM.getCourseCode();
             batch = batchService.findBatch(batchTM.getBatchNo());
-            if (!(batch.getStudents() == null)) {
-                for (Student student : batch.getStudents()) {
-                    batchStudents.add(student);
-                }
+            List<Student> students = batch.getStudents();
+            if (students != null) {
+                batchStudents = students;
+            } else {
+                batchStudents = new ArrayList<>();
             }
 
             lblBatchNo.setText(batch.getBatchNo());
@@ -74,12 +83,12 @@ public class BatchDetailFormController {
 
             loadStudentsTable();
         } catch (NotFoundException e) {
-            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Batch not found.Try again", ButtonType.OK).show();
         }
     }
 
     private void loadStudentsTable() {
-        if (batch.getStudents() == null)
+        if (batchStudents.size() == 0)
             return;
         studentsTableList.clear();
         for (Student student : batchStudents) {
@@ -93,17 +102,19 @@ public class BatchDetailFormController {
             btnDelete.setOnAction(event -> {
                 Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure want to delete this student?", ButtonType.YES, ButtonType.NO).showAndWait();
                 if (buttonType.get() == ButtonType.YES) {
-
                     tblStudents.getItems().remove(batchDetailTM);
                     batchStudents.removeIf(e -> e.getNic().equals(student.getNic()));
                     lblNoOfStudents.setText(String.valueOf(batchStudents.size()));
                     Platform.runLater(() -> {
                         try {
-
-                            Batch updatedBatch = new Batch(batch.getCourseCode(), batch.getBatchNo(), batch.getCommenceDate(), batch.getCompletedDate(), batch.getDescription(), batch.getCourseFee(), batchStudents);
-                            batchService.updateBatch(updatedBatch);
+                            batch.setStudents(batchStudents);
+                            batchService.updateBatch(batch);
+                            Map<String, String> courseWithBatch = student.getCourseWithBatch();
+                            courseWithBatch.remove(courseCode);
+                            student.setCourseWithBatch(courseWithBatch);
+                            studentService.updateStudent(student);
                         } catch (NotFoundException e) {
-                            e.printStackTrace();
+                            new Alert(Alert.AlertType.ERROR, "Student deletion failed.", ButtonType.OK).show();
                         }
                     });
                 }
@@ -124,8 +135,12 @@ public class BatchDetailFormController {
             lblMobileNo.setText(student.getMobileNumber());
             lblEmail.setText(student.getEmail());
 
+            btnAdd.setDisable(false);
+
         } catch (NotFoundException e) {
             new Alert(Alert.AlertType.ERROR, "Not found student with with this NIC. Try again", ButtonType.OK).show();
+            student = null;
+            return;
         }
 
 
@@ -136,26 +151,54 @@ public class BatchDetailFormController {
         if (buttonType.get() == ButtonType.YES) {
             JFXButton btnDelete = new JFXButton("Delete");
             btnDelete.getStyleClass().add("delete-button");
-            batchStudents.add(student);
-            lblNoOfStudents.setText(String.valueOf(batchStudents.size()));
             try {
+                for (Student student : batchStudents) {
+                    if(student.getNic().equals(this.student.getNic())){
+                        new Alert(Alert.AlertType.ERROR, "Student is already in the batch.", ButtonType.OK).show();
+                        clearFields();
+                        return;
+                    }
+                }
 
                 Map<String, String> courseWithBatch = student.getCourseWithBatch();
-                courseWithBatch.put(batch.getCourseCode(),batch.getBatchNo());
+                if (courseWithBatch == null) {
+                    courseWithBatch = new HashMap<>();
+                }
 
-                Student updatedStudent = new Student(this.student.getNic(), this.student.getName(), this.student.getEmail(), this.student.getMobileNumber(), this.student.getDob(), this.student.getGender(), this.student.getAddress(), courseWithBatch);
-                studentService.updateStudent(updatedStudent);
-                Batch updatedBatch = new Batch(batch.getCourseCode(), batch.getBatchNo(), batch.getCommenceDate(), batch.getCompletedDate(), batch.getDescription(), batch.getCourseFee(), batchStudents);
-                batchService.updateBatch(updatedBatch);
+                if(courseWithBatch.keySet().contains(courseCode)){
+                    new Alert(Alert.AlertType.ERROR, "Student is already in the course in a different batch.", ButtonType.OK).show();
+                    clearFields();
+                    return;
+                }
+
+                batchStudents.add(student);
+                lblNoOfStudents.setText(String.valueOf(batchStudents.size()));
+                courseWithBatch.put(batch.getCourseCode(), batch.getBatchNo());
+                student.setCourseWithBatch(courseWithBatch);
+                batch.setStudents(batchStudents);
+                studentService.updateStudent(student);
+                batchService.updateBatch(batch);
+
+                clearFields();
+
                 Platform.runLater(() -> {
                     loadStudentsTable();
                 });
-                System.out.println(student.getCourseWithBatch().get("001"));
+                new Alert(Alert.AlertType.INFORMATION, "Student Added successfully.", ButtonType.OK).show();
             } catch (NotFoundException e) {
-                e.printStackTrace();
+                new Alert(Alert.AlertType.ERROR, "Student Add failed. Try again", ButtonType.OK).show();
             }
 
 
         }
+    }
+
+    private void clearFields() {
+        student = null;
+        txtSearchByNIC.setText("");
+        lblName.setText("");
+        lblNIC.setText("");
+        lblMobileNo.setText("");
+        lblEmail.setText("");
     }
 }

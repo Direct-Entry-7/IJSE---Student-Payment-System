@@ -92,10 +92,10 @@
                             </cursor>
                         </JFXButton>
                         <Line endX="462.0" layoutX="110.0" layoutY="512.0" startX="-100.0" stroke="#bdbdbd" />
-                  <Label fx:id="lblName" layoutX="200.0" layoutY="250.0" text="1" />
-                  <Label fx:id="lblNIC" layoutX="201.0" layoutY="330.0" text="2" />
-                  <Label fx:id="lblMobileNo" layoutX="201.0" layoutY="403.0" text="3" />
-                  <Label fx:id="lblEmail" layoutX="202.0" layoutY="477.0" text="4" />
+                  <Label fx:id="lblName" layoutX="200.0" layoutY="250.0" />
+                  <Label fx:id="lblNIC" layoutX="201.0" layoutY="330.0" />
+                  <Label fx:id="lblMobileNo" layoutX="201.0" layoutY="403.0" />
+                  <Label fx:id="lblEmail" layoutX="202.0" layoutY="477.0" />
                     </children>
                 </AnchorPane>
                 <AnchorPane layoutX="83.0" layoutY="158.0" prefHeight="534.0" prefWidth="570.0" style="-fx-background-color: white;">

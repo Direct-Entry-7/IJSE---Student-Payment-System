@@ -129,8 +129,6 @@ public class BatchFormController {
 
 
             btnViewBatchDetails.setOnAction(event -> {
-                System.out.println("Button selected");
-
                 try {
                     Parent p = FXMLLoader.load(getClass().getResource("/view/BatchDetailForm.fxml"));
                     AnchorPane pneMainContext = (AnchorPane) tblBatches.getParent().getParent();

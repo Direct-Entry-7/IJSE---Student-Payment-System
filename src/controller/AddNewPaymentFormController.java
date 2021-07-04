@@ -59,7 +59,7 @@ public class AddNewPaymentFormController {
     private ObservableList<PaymentDetailsTM> paymentList = FXCollections.observableArrayList();
 
     public void initialize(){
-        txtSearchByNIC.setText("951293822v");
+        txtSearchByNIC.setText("931293828v");
         tblPaymentDetails.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("date"));
         tblPaymentDetails.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("paymentMethod"));
         tblPaymentDetails.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -68,13 +68,11 @@ public class AddNewPaymentFormController {
 
         cmbSelectCoursePaymentDetails.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
-                    System.out.println(newValue);
                     loadPaymentDetails(newValue.toString());
                 });
 
         cmbSelectCoursePayment.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
-                    System.out.println(newValue);
                     List<Payment> payments = null;
                     try {
                         payments = paymentService.findPayments(student.getNic(), newValue.toString());
@@ -109,6 +107,7 @@ public class AddNewPaymentFormController {
     }
 
     private void loadPaymentDetails(String courseCode) {
+        System.out.println(courseCode);
         lblCourseCode.setText("");
         lblBatchNo.setText("");
         lblPayment.setText("");
@@ -136,7 +135,7 @@ public class AddNewPaymentFormController {
 
 
         } catch (NotFoundException e) {
-            e.printStackTrace();
+           return;
         }
 
 
@@ -155,6 +154,7 @@ public class AddNewPaymentFormController {
         ObservableList<String> paymentDetails = cmbSelectCoursePaymentDetails.getItems();
         ObservableList<String> payment = cmbSelectCoursePayment.getItems();
 
+        this.student = null;
         paymentDetails.clear();
         payment.clear();
         paymentList.clear();
@@ -172,8 +172,10 @@ public class AddNewPaymentFormController {
             lblMobileNo.setText(student.getMobileNumber());
             lblEmail.setText(student.getEmail());
             lblAddress.setText(student.getAddress());
-
+            System.out.println(student);
             Map<String, String> courseWithBatch = student.getCourseWithBatch();
+
+            System.out.println(courseWithBatch.size());
 
             for (String course:courseWithBatch.keySet()) {
                paymentDetails.add(course);
