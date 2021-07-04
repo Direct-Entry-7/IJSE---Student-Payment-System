@@ -75,19 +75,22 @@ public class AddNewPaymentFormController {
                 .addListener((observable, oldValue, newValue) -> {
                     List<Payment> payments = null;
                     try {
-                        payments = paymentService.findPayments(student.getNic(), newValue.toString());
                         Batch batch = batchService.findBatch(student.getCourseWithBatch().get(newValue.toString()));
+                        lblBatchFee.setText(batch.getCourseFee().toString());
+                        lblCurrentPayment.setText("0.00");
+                        lblBalance.setText(batch.getCourseFee().toString());
+
+                        payments = paymentService.findPayments(student.getNic(), newValue.toString());
                         BigDecimal courseFee = batch.getCourseFee();
 
                         BigDecimal amount = BigDecimal.ZERO;
                         for (Payment payment:payments) {
                             amount = amount.add(payment.getAmount());
-                            lblBatchFee.setText(batch.getCourseFee().toString());
                             lblCurrentPayment.setText(amount.toString());
                             lblBalance.setText(courseFee.subtract(amount).toString());
                         }
                     } catch (NotFoundException e) {
-                        e.printStackTrace();
+                       return;
                     }
 
                 });
@@ -205,10 +208,6 @@ public class AddNewPaymentFormController {
         } catch (NotFoundException | DuplicateEntryException e) {
             e.printStackTrace();
         }
-
-
-
-
 
     }
 
