@@ -13,7 +13,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
-import model.*;
+import model.Batch;
+import model.Payment;
+import model.PaymentDetailsTM;
+import model.Student;
 import service.BatchService;
 import service.PaymentService;
 import service.StudentService;
@@ -25,6 +28,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class AddNewPaymentFormController {
 
@@ -58,7 +62,7 @@ public class AddNewPaymentFormController {
     private BatchService batchService = new BatchService();
     private ObservableList<PaymentDetailsTM> paymentList = FXCollections.observableArrayList();
 
-    public void initialize(){
+    public void initialize() {
         txtSearchByNIC.setText("931293828v");
         tblPaymentDetails.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("date"));
         tblPaymentDetails.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("paymentMethod"));
@@ -73,6 +77,7 @@ public class AddNewPaymentFormController {
 
         cmbSelectCoursePayment.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
+                    if(newValue == null) return;
                     List<Payment> payments = null;
                     try {
                         Batch batch = batchService.findBatch(student.getCourseWithBatch().get(newValue.toString()));
@@ -84,13 +89,13 @@ public class AddNewPaymentFormController {
                         BigDecimal courseFee = batch.getCourseFee();
 
                         BigDecimal amount = BigDecimal.ZERO;
-                        for (Payment payment:payments) {
+                        for (Payment payment : payments) {
                             amount = amount.add(payment.getAmount());
                             lblCurrentPayment.setText(amount.toString());
                             lblBalance.setText(courseFee.subtract(amount).toString());
                         }
                     } catch (NotFoundException e) {
-                       return;
+                        return;
                     }
 
                 });
@@ -106,11 +111,9 @@ public class AddNewPaymentFormController {
         paymentMethods.add("Handover");
 
 
-
     }
 
     private void loadPaymentDetails(String courseCode) {
-        System.out.println(courseCode);
         lblCourseCode.setText("");
         lblBatchNo.setText("");
         lblPayment.setText("");
@@ -128,7 +131,7 @@ public class AddNewPaymentFormController {
 
 
             BigDecimal amount = BigDecimal.ZERO;
-            for (Payment payment:payments) {
+            for (Payment payment : payments) {
                 amount = amount.add(payment.getAmount());
                 PaymentDetailsTM pdTM = new PaymentDetailsTM(payment.getRefNo(), payment.getCourseCode(), payment.getBatchNo(), payment.getStudentNIC(), payment.getDescription(), payment.getPaymentMethod(), payment.getDate(), payment.getFile(), payment.getAmount(), payment.getNote(), new Button("Delete"));
                 paymentList.add(pdTM);
@@ -138,14 +141,13 @@ public class AddNewPaymentFormController {
 
 
         } catch (NotFoundException e) {
-           return;
+            return;
         }
 
 
     }
 
     public void fleSelectReceipt_OnMouseClicked(MouseEvent mouseEvent) {
-        System.out.println("Called");
         Window window = ((Node) (mouseEvent.getSource())).getScene().getWindow();
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(window);
@@ -162,7 +164,7 @@ public class AddNewPaymentFormController {
         payment.clear();
         paymentList.clear();
 
-        if(!(txtSearchByNIC.getText().matches("(^\\d{9}[vV])|(^\\d{11}[vV])"))){
+        if (!(txtSearchByNIC.getText().matches("(^\\d{9}[vV])|(^\\d{11}[vV])"))) {
             new Alert(Alert.AlertType.ERROR, "Invalid NIC number").show();
             txtSearchByNIC.requestFocus();
             return;
@@ -178,11 +180,9 @@ public class AddNewPaymentFormController {
             System.out.println(student);
             Map<String, String> courseWithBatch = student.getCourseWithBatch();
 
-            System.out.println(courseWithBatch.size());
-
-            for (String course:courseWithBatch.keySet()) {
-               paymentDetails.add(course);
-               payment.add(course);
+            for (String course : courseWithBatch.keySet()) {
+                paymentDetails.add(course);
+                payment.add(course);
             }
         } catch (NotFoundException e) {
             new Alert(Alert.AlertType.ERROR, "Not found student with this NIC. Try again", ButtonType.OK).show();
@@ -193,27 +193,105 @@ public class AddNewPaymentFormController {
     }
 
     public void btnPay_OnAction(ActionEvent actionEvent) {
-        try {
-            String courseCode = cmbSelectCoursePayment.getSelectionModel().getSelectedItem().toString();
-            String description = cmbDescription.getSelectionModel().getSelectedItem().toString();
-            String paymentMethod = cmbPaymentMethod.getSelectionModel().getSelectedItem().toString();
-            LocalDate selectedDate = LocalDate.parse(dtSelectDate.getValue().toString());
-            BigDecimal amount = BigDecimal.valueOf(Integer.valueOf(txtAmount.getText()));
-            String refNo = txtRefNo.getText();
-            String note = txtNote.getText();
-            Batch batch = batchService.findBatch(student.getCourseWithBatch().get(courseCode));
+        if (!isValidated()) {
+            return;
+        }
 
-            Payment payment = new Payment(refNo, courseCode, batch.getBatchNo(), student.getNic(), description, paymentMethod, selectedDate, null, amount, note);
-            paymentService.savePayment(payment);
-        } catch (NotFoundException | DuplicateEntryException e) {
-            e.printStackTrace();
+        String courseCode = cmbSelectCoursePayment.getSelectionModel().getSelectedItem().toString();
+        String description = cmbDescription.getSelectionModel().getSelectedItem().toString();
+        String paymentMethod = cmbPaymentMethod.getSelectionModel().getSelectedItem().toString();
+        LocalDate selectedDate = LocalDate.parse(dtSelectDate.getValue().toString());
+        BigDecimal amount = BigDecimal.valueOf(Integer.valueOf(txtAmount.getText()));
+        String refNo = txtRefNo.getText();
+        String note = txtNote.getText();
+        Optional<ButtonType> buttonType = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure want to make this payment?", ButtonType.YES, ButtonType.NO).showAndWait();
+        if (buttonType.get() == ButtonType.YES) {
+            try {
+                BigDecimal balance = BigDecimal.valueOf(Integer.valueOf(lblBalance.getText()));
+                if(amount.compareTo(balance)>0){
+                    new Alert(Alert.AlertType.ERROR, "Cannot add amount greater than balance").show();
+                    return;
+                }
+                Batch batch = batchService.findBatch(student.getCourseWithBatch().get(courseCode));
+                Payment payment = new Payment(refNo, courseCode, batch.getBatchNo(), student.getNic(), description, paymentMethod, selectedDate, null, amount, note);
+                paymentService.savePayment(payment);
+                new Alert(Alert.AlertType.INFORMATION, "Payment successfully added", ButtonType.OK).showAndWait();
+            } catch (NotFoundException e) {
+                new Alert(Alert.AlertType.ERROR, "Cannot find this batch").show();
+                return;
+            } catch (DuplicateEntryException e) {
+                new Alert(Alert.AlertType.ERROR, "Duplicate payment.").show();
+                return;
+            }
         }
 
     }
 
     public void btnClear_OnAction(ActionEvent actionEvent) {
+        cmbSelectCoursePayment.getSelectionModel().clearSelection();
+        cmbDescription.getSelectionModel().clearSelection();
+        cmbPaymentMethod.getSelectionModel().clearSelection();
+        dtSelectDate.setValue(null);
+        txtAmount.setText("");
+        txtRefNo.setText("");
+        txtNote.setText("");
     }
 
     public void btnPrint_OnAction(ActionEvent actionEvent) {
+    }
+
+    private boolean isValidated() {
+        try {
+            cmbSelectCoursePayment.getSelectionModel().getSelectedItem().toString();
+        } catch (NullPointerException e) {
+            new Alert(Alert.AlertType.ERROR, "Course should be selected").show();
+            cmbSelectCoursePayment.requestFocus();
+            return false;
+        }
+
+        try {
+            cmbDescription.getSelectionModel().getSelectedItem().toString();
+        } catch (NullPointerException e) {
+            new Alert(Alert.AlertType.ERROR, "Description should be selected").show();
+            cmbDescription.requestFocus();
+            return false;
+        }
+
+        try {
+            cmbPaymentMethod.getSelectionModel().getSelectedItem().toString();
+        } catch (NullPointerException e) {
+            new Alert(Alert.AlertType.ERROR, "Payment method should be selected").show();
+            cmbPaymentMethod.requestFocus();
+            return false;
+        }
+
+        try {
+            LocalDate selectedDate = LocalDate.parse(dtSelectDate.getValue().toString());
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Date. Please select the date").show();
+            dtSelectDate.requestFocus();
+            return false;
+        }
+
+        if (!(txtRefNo.getText().matches("[A-Za-z0-9]+"))) {
+            new Alert(Alert.AlertType.ERROR, "Enter Valid Ref no").show();
+            return false;
+        }
+
+        try {
+            BigDecimal.valueOf(Integer.valueOf(txtAmount.getText()));
+        } catch (NumberFormatException e) {
+            new Alert(Alert.AlertType.ERROR, "Enter Valid Amount").show();
+            txtAmount.requestFocus();
+            return false;
+        }
+
+
+        if (!(txtNote.getText().matches("[A-Za-z0-9]*"))) {
+            new Alert(Alert.AlertType.ERROR, "Enter Valid Note").show();
+            return false;
+        }
+
+        return true;
     }
 }
