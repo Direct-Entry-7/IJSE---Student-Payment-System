@@ -33,7 +33,7 @@ public class StudentService {
 
     public void saveStudent(Student student) throws DuplicateEntryException {
         if (exitsStudent(student.getNic())) {
-
+            throw new DuplicateEntryException();
         }
         studentDB.add(student);
     }

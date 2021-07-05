@@ -36,7 +36,7 @@ public class BatchService {
 
     public void saveBatch(Batch batch) throws DuplicateEntryException {
         if (exitsBatch(batch.getBatchNo())) {
-
+            throw new DuplicateEntryException();
         }
         batchDB.add(batch);
     }

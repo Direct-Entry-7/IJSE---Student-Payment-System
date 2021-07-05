@@ -11,11 +11,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.Student;
 import model.User;
 import model.UserTM;
 import service.UserService;
 import service.exception.DuplicateEntryException;
+import service.exception.UserLimitException;
 
 import java.util.List;
 import java.util.Optional;
@@ -85,9 +85,14 @@ public class UserFormController {
             } catch (DuplicateEntryException e) {
                 new Alert(Alert.AlertType.ERROR, "User is already in the system.").show();
                 return;
+            } catch (UserLimitException e) {
+                new Alert(Alert.AlertType.ERROR, "Admin limit exceeded.System only can have 3 admins").show();
+                return;
             }
         }
     }
+
+
 
     private boolean isValidated() {
         try {
@@ -97,25 +102,25 @@ public class UserFormController {
             cmbUserType.requestFocus();
             return false;
         }
-        if(!(txtName.getText().matches("[A-Za-z]{3,}"))){
+        if (!(txtName.getText().matches("[A-Za-z]{3,}"))) {
             new Alert(Alert.AlertType.ERROR, "Invalid name").show();
             txtName.requestFocus();
             return false;
-        }else if(!(txtEmail.getText().matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"))){
+        } else if (!(txtEmail.getText().matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"))) {
             new Alert(Alert.AlertType.ERROR, "Enter valid email address").show();
             txtEmail.requestFocus();
             return false;
-        }else if(!(txtMobileNumber.getText().matches("\\d{10}"))){
+        } else if (!(txtMobileNumber.getText().matches("\\d{10}"))) {
             new Alert(Alert.AlertType.ERROR, "Enter valid Mobile Number").show();
             txtMobileNumber.requestFocus();
             return false;
-        }else if(!(txtPassword.getText().matches(".{4,}"))){
+        } else if (!(txtPassword.getText().matches(".{4,}"))) {
             new Alert(Alert.AlertType.ERROR, "Enter valid password. Password should be at least 5 characters").show();
             txtPassword.setText("");
             txtConfirmPassword.setText("");
             txtPassword.requestFocus();
             return false;
-        }else if(!(txtPassword.getText().equals(txtConfirmPassword.getText()))){
+        } else if (!(txtPassword.getText().equals(txtConfirmPassword.getText()))) {
             new Alert(Alert.AlertType.ERROR, "Password did not match").show();
             txtPassword.setText("");
             txtConfirmPassword.setText("");
@@ -124,7 +129,6 @@ public class UserFormController {
         }
         return true;
     }
-
 
 
 }
