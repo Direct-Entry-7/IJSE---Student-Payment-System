@@ -10,8 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="825.0" prefWidth="1450.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeFormController">
+<AnchorPane prefHeight="825.0" prefWidth="1450.0" style="-fx-background-color: white;" stylesheets="@css/HomeFormStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeFormController">
    <children>
       <Line endX="1347.878662109375" endY="1.52587890625E-5" layoutX="102.0" layoutY="102.0" startX="-100.0" stroke="#bdbdbd" strokeWidth="3.0" AnchorPane.leftAnchor="-0.1213226318359375" AnchorPane.rightAnchor="0.1213226318359375" />
       <ImageView layoutX="65.0" layoutY="23.0">
@@ -84,7 +83,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <TableView layoutX="133.0" layoutY="486.0" prefHeight="312.0" prefWidth="1186.0" AnchorPane.leftAnchor="133.0" AnchorPane.rightAnchor="133.0">
+      <TableView id="tbl-home" fx:id="tblHome" layoutX="133.0" layoutY="486.0" prefHeight="312.0" prefWidth="1186.0" AnchorPane.leftAnchor="133.0" AnchorPane.rightAnchor="133.0">
         <columns>
           <TableColumn prefWidth="154.00003051757812" text="Course ID" />
           <TableColumn prefWidth="332.0" text="Name" />
