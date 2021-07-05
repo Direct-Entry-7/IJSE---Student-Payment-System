@@ -287,6 +287,7 @@ public class AddNewPaymentFormController {
         }
 
 
+
         if (!(txtNote.getText().matches("[A-Za-z0-9]*"))) {
             new Alert(Alert.AlertType.ERROR, "Enter Valid Note").show();
             return false;
