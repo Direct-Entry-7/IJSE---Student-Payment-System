@@ -14,7 +14,7 @@
             <Image url="@assets/ijse-logo-login.png" />
          </image>
       </ImageView>
-      <JFXProgressBar layoutX="200.0" layoutY="199.0" progress="0.13" />
+      <JFXProgressBar fx:id="pgb" layoutX="200.0" layoutY="199.0" progress="0.13" />
       <Label layoutX="266.0" layoutY="226.0" text="Loading...." />
    </children>
 </AnchorPane>

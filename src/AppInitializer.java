@@ -18,13 +18,6 @@ public class AppInitializer extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        try {
-            spinUpRediServerInstance();
-        } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR,"Unable to load data, Something went wrong").show();
-            return;
-        }
-
         AnchorPane root = FXMLLoader.load(this.getClass().getResource("/view/SplashScreenForm.fxml"));
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
@@ -45,14 +38,5 @@ public class AppInitializer extends Application {
 //        primaryStage.centerOnScreen();
     }
 
-    private void spinUpRediServerInstance() throws Exception{
-        String[] commands = {"redis-server","redis.conf"};
-        Process redisServer = Runtime.getRuntime().exec(commands);
-        int exitCode = redisServer.waitFor();
 
-        if(exitCode != 0){
-            throw new Exception("Failed to spin up the redis server instance");
-        }
-
-    }
 }
