@@ -17,7 +17,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Paint;
 import model.Course;
 import model.CourseTM;
-import service.CourseService;
+
+import service.CourseServiceRedisImpl;
 import service.exception.DuplicateEntryException;
 import service.exception.NotFoundException;
 
@@ -36,7 +37,7 @@ public class CourseFormController {
     public TableView<CourseTM> tblCourses;
     public JFXButton btnSaveCourse;
 
-    private CourseService courseService = new CourseService();
+    private CourseServiceRedisImpl courseService = new CourseServiceRedisImpl();
     private ObservableList<CourseTM> coursesList = FXCollections.observableArrayList();
 
 
@@ -74,8 +75,11 @@ public class CourseFormController {
 
     private void loadCourses() {
         coursesList.clear();
-
-        for (Course course: courseService.getAllCourses()) {
+        List<Course> allCourses = courseService.getAllCourses();
+        if(allCourses == null){
+            return;
+        }
+        for (Course course: allCourses) {
             JFXButton btnDelete = new JFXButton("Delete");
             btnDelete.getStyleClass().add("delete-button");
 

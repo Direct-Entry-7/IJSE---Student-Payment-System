@@ -2,6 +2,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -16,6 +17,14 @@ public class AppInitializer extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+
+        try {
+            spinUpRediServerInstance();
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR,"Unable to load data, Something went wrong").show();
+            return;
+        }
+
         Parent mainForm = FXMLLoader.load(getClass().getResource("/view/MainForm.fxml"));
         Scene mainScene = new Scene(mainForm);
         primaryStage.setScene(mainScene);
@@ -23,5 +32,10 @@ public class AppInitializer extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
         primaryStage.centerOnScreen();
+    }
+
+    private void spinUpRediServerInstance() throws Exception{
+        String[] commands = {"redis-server",""};
+        Runtime.getRuntime().exec(commands);
     }
 }
