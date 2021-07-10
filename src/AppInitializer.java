@@ -35,7 +35,13 @@ public class AppInitializer extends Application {
     }
 
     private void spinUpRediServerInstance() throws Exception{
-        String[] commands = {"redis-server",""};
-        Runtime.getRuntime().exec(commands);
+        String[] commands = {"redis-server","redis.conf"};
+        Process redisServer = Runtime.getRuntime().exec(commands);
+        int exitCode = redisServer.waitFor();
+
+        if(exitCode != 0){
+            throw new Exception("Failed to spin up the redis server instance");
+        }
+
     }
 }
