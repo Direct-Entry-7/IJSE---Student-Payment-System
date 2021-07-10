@@ -14,12 +14,12 @@
    <children>
       <AnchorPane id="top-bar" fx:id="pneTopBar" opacity="0.69" prefHeight="100.0" prefWidth="1750.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="85.0" fitWidth="291.67" layoutX="7.0" layoutY="8.0">
+            <ImageView fitHeight="85.0" fitWidth="291.67" layoutX="7.0" layoutY="8.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="8.0">
                <image>
                   <Image url="@assets/ijse-logo.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="icnMyAccount" fitHeight="60.0" fitWidth="60.0" layoutX="845.0" layoutY="20.0" onMouseClicked="#icnMyAccount_OnMouseClicked" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+            <ImageView fx:id="icnMyAccount" fitHeight="60.0" fitWidth="60.0" layoutX="1667.0" layoutY="20.0" onMouseClicked="#icnMyAccount_OnMouseClicked" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="20.0">
                <image>
                   <Image url="@assets/icons/my-account.png" />
                </image>
@@ -30,20 +30,20 @@
          </children></AnchorPane>
       <AnchorPane id="bottom-bar" fx:id="pneBottomBar" layoutY="925.0" prefHeight="75.0" prefWidth="1750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Label layoutX="807.0" layoutY="16.0" text="IJSE © 2021" textFill="WHITE">
+            <Label layoutX="807.0" layoutY="16.0" text="IJSE © 2021" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.topAnchor="16.0">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
-            <Label layoutX="1647.0" layoutY="16.0" text="1.0.0" textFill="WHITE">
+            <Label layoutX="1635.0" layoutY="16.0" prefHeight="44.0" prefWidth="101.0" text="1.0.0" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="16.0">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
          </children></AnchorPane>
-      <AnchorPane id="side-bar" fx:id="pneSideBar" layoutY="100.0" prefHeight="825.0" prefWidth="300.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0">
+      <AnchorPane id="side-bar" fx:id="pneSideBar" layoutY="100.0" prefHeight="825.0" prefWidth="300.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0">
          <children>
-            <VBox prefHeight="825.0" prefWidth="300.0" spacing="2.0">
+            <VBox prefHeight="825.0" prefWidth="300.0" spacing="2.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <HBox fx:id="hbxHome" onMouseClicked="#hbxHome_OnMouseClicked" prefHeight="100.0" prefWidth="300.0" spacing="10.0" styleClass="menu-item">
                      <children>
@@ -214,7 +214,7 @@
                </children>
             </VBox>
          </children></AnchorPane>
-      <AnchorPane id="main-content" fx:id="pneMainContext" layoutX="299.0" layoutY="100.0" prefHeight="825.0" prefWidth="1450.0" style="-fx-background-color: white;">
+      <AnchorPane id="main-content" fx:id="pneMainContext" layoutX="299.0" layoutY="100.0" prefHeight="825.0" prefWidth="1450.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
