@@ -1,12 +1,11 @@
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import redis.clients.jedis.Jedis;
 
 import java.io.IOException;
 
@@ -14,6 +13,8 @@ public class AppInitializer extends Application {
 
     public static void main(String[] args) {
         launch(args);
+
+        new Jedis("localhost", 9090).shutdown();
     }
 
     @Override
@@ -29,13 +30,6 @@ public class AppInitializer extends Application {
         primaryStage.centerOnScreen();
 
 
-//        Parent mainForm = FXMLLoader.load(getClass().getResource("/view/MainForm.fxml"));
-//        Scene mainScene = new Scene(mainForm);
-//        primaryStage.setScene(mainScene);
-//        primaryStage.setTitle("Student Payment System");
-//        primaryStage.setResizable(false);
-//        primaryStage.show();
-//        primaryStage.centerOnScreen();
     }
 
 

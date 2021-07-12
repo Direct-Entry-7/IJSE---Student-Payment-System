@@ -2,6 +2,8 @@ package model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Course implements Serializable {
     private String courseCode;
@@ -20,6 +22,10 @@ public class Course implements Serializable {
         this.courseFee = courseFee;
         this.duration = duration;
         this.description = description;
+    }
+
+    public static Course fromMap(String courseCode, Map<String, String> data) {
+        return new Course(courseCode, data.get("name"), BigDecimal.valueOf(Double.valueOf(data.get("courseFee"))), data.get("duration"), data.get("description"));
     }
 
     public String getCourseCode() {
@@ -60,6 +66,16 @@ public class Course implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Map<String, String> toMap() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("name", name);
+        map.put("courseFee", courseFee + "");
+        map.put("duration", duration);
+        map.put("description", description);
+
+        return map;
     }
 
     @Override
